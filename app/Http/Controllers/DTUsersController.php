@@ -2,11 +2,11 @@
 
 use Illuminate\Routing\Controller;
 
-class PadsController extends Controller {
+class DTUsersController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pads
+	 * GET /dtusers
 	 *
 	 * @return Response
 	 */
@@ -17,7 +17,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pads/create
+	 * GET /dtusers/create
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pads
+	 * POST /dtusers
 	 *
 	 * @return Response
 	 */
@@ -39,7 +39,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Display the specified resource.
-	 * GET /pads/{id}
+	 * GET /dtusers/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,7 +51,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pads/{id}/edit
+	 * GET /dtusers/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,7 +63,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pads/{id}
+	 * PUT /dtusers/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,7 +75,7 @@ class PadsController extends Controller {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pads/{id}
+	 * DELETE /dtusers/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

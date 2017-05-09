@@ -2,11 +2,11 @@
 
 use Illuminate\Routing\Controller;
 
-class PizzasController extends Controller {
+class DTCheesesController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pizzas
+	 * GET /cheeses
 	 *
 	 * @return Response
 	 */
@@ -17,7 +17,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pizzas/create
+	 * GET /cheeses/create
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pizzas
+	 * POST /cheeses
 	 *
 	 * @return Response
 	 */
@@ -39,7 +39,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Display the specified resource.
-	 * GET /pizzas/{id}
+	 * GET /cheeses/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,7 +51,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pizzas/{id}/edit
+	 * GET /cheeses/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,7 +63,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pizzas/{id}
+	 * PUT /cheeses/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,7 +75,7 @@ class PizzasController extends Controller {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pizzas/{id}
+	 * DELETE /cheeses/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

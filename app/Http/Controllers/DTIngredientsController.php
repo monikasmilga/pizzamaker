@@ -2,11 +2,11 @@
 
 use Illuminate\Routing\Controller;
 
-class PermissionsController extends Controller {
+class DTIngredientsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /permissions
+	 * GET /ingredients
 	 *
 	 * @return Response
 	 */
@@ -17,7 +17,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /permissions/create
+	 * GET /ingredients/create
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /permissions
+	 * POST /ingredients
 	 *
 	 * @return Response
 	 */
@@ -39,7 +39,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Display the specified resource.
-	 * GET /permissions/{id}
+	 * GET /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,7 +51,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /permissions/{id}/edit
+	 * GET /ingredients/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,7 +63,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /permissions/{id}
+	 * PUT /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,7 +75,7 @@ class PermissionsController extends Controller {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /permissions/{id}
+	 * DELETE /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

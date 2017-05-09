@@ -2,11 +2,11 @@
 
 use Illuminate\Routing\Controller;
 
-class CheesesController extends Controller {
+class DTRolesController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /cheeses
+	 * GET /dtroles
 	 *
 	 * @return Response
 	 */
@@ -17,7 +17,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /cheeses/create
+	 * GET /dtroles/create
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /cheeses
+	 * POST /dtroles
 	 *
 	 * @return Response
 	 */
@@ -39,7 +39,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Display the specified resource.
-	 * GET /cheeses/{id}
+	 * GET /dtroles/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,7 +51,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /cheeses/{id}/edit
+	 * GET /dtroles/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,7 +63,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /cheeses/{id}
+	 * PUT /dtroles/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,7 +75,7 @@ class CheesesController extends Controller {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /cheeses/{id}
+	 * DELETE /dtroles/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
