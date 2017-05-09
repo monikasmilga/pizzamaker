@@ -21,4 +21,9 @@ class DTPizzaIngredientsConnections extends Model
      */
     protected $fillable = ['pizzas_id', 'ingredients_id'];
 
+    /**
+     * @var bool
+     */
+    protected $updated_at = false;
+
 }

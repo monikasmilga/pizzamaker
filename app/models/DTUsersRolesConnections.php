@@ -20,4 +20,10 @@ class DTUsersRolesConnections extends Model
      * @var tables fillables
      */
     protected $fillable = ['users_id', 'roles_id'];
+    
+    /**
+     * @var bool
+     */
+    protected $updated_at = false;
+
 }

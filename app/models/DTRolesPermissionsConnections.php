@@ -21,4 +21,8 @@ class DTRolesPermissionsConnections extends Model
      */
     protected $fillable = ['permissions_id', 'roles_id'];
 
+    /**
+     * @var bool
+     */
+    protected $updated_at = false;
 }
