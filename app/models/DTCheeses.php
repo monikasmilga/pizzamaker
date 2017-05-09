@@ -2,8 +2,8 @@
 
 namespace App\models;
 
-class DTPads extends CoreModel
+class DTCheeses extends CoreModel
 {
-    protected $table = 'dt_pads';
+    protected $table = 'dt_cheeses';
     protected $fillable = ['id', 'name', 'calories'];
 }
