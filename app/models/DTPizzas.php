@@ -3,6 +3,10 @@
 namespace App\models;
 
 
+/**
+ * Class DTPizzas
+ * @package App\models
+ */
 class DTPizzas extends CoreModel
 {
     protected $table = 'dt_pizzas';
