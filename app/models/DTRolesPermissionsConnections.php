@@ -11,6 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DTRolesPermissionsConnections extends Model
 {
+    /**
+     * @var table name
+     */
     protected $table = 'dt_roles_permissions_connections';
+
+    /**
+     * @var tables fillables
+     */
     protected $fillable = ['permissions_id', 'roles_id'];
+
 }
