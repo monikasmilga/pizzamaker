@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class CoreModel
+ * @package App\models
+ */
 class CoreModel extends Model
 {
 
