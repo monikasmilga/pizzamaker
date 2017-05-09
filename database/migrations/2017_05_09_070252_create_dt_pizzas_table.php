@@ -20,6 +20,7 @@ class CreateDtPizzasTable extends Migration {
 			$table->softDeletes();
 			$table->string('pads_id', 36)->index('fk_dt_pizzas_dt_pads1_idx');
 			$table->string('cheeses_id', 36)->index('fk_dt_pizzas_dt_cheeses1_idx');
+			$table->string('user_id', 36)->nullable()->index('fk_dt_pizzas_dt_users1_idx');
 			$table->string('name');
 			$table->integer('calories');
 			$table->string('comment')->nullable();
