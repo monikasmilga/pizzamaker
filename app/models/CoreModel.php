@@ -25,10 +25,11 @@ class CoreModel extends Model
     /**
      * Automatically generates and adds UUID to model
      */
-    protected static function boot() : void {
+    protected static function boot() {
         parent::boot();
         static::creating(function($model) {
             $model->{$model->getKeyName()} = Uuid::uuid4();
         });
+
     }
 }
