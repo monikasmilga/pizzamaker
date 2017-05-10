@@ -2,7 +2,7 @@
 
 
 
-class DTPizzasController extends DTPizzasAPIController {
+class DTPizzasController extends DTAPIBaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,6 +14,19 @@ class DTPizzasController extends DTPizzasAPIController {
 	{
 		//
 	}
+
+
+    /**
+     * Display a listing of the resource.
+     * GET /dtpizzasapi
+     *
+     * @return Response
+     */
+    public function apiIndex()
+    {
+        //
+    }
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -37,6 +50,19 @@ class DTPizzasController extends DTPizzasAPIController {
 		//
 	}
 
+
+    /**
+     * Store a newly created resource in storage.
+     * POST /dtpizzasapi
+     *
+     * @return Response
+     */
+    public function apiStore()
+    {
+        //
+    }
+
+
 	/**
 	 * Display the specified resource.
 	 * GET /pizzas/{id}
@@ -48,6 +74,20 @@ class DTPizzasController extends DTPizzasAPIController {
 	{
 		//
 	}
+
+
+    /**
+     * Display the specified resource.
+     * GET /dtpizzasapi/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function apiShow($id)
+    {
+        //
+    }
+
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -73,6 +113,21 @@ class DTPizzasController extends DTPizzasAPIController {
 		//
 	}
 
+
+    /**
+     * Update the specified resource in storage.
+     * PUT /dtpizzasapi/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function apiUpdate($id)
+    {
+        //
+    }
+
+
+
 	/**
 	 * Remove the specified resource from storage.
 	 * DELETE /pizzas/{id}
@@ -84,5 +139,19 @@ class DTPizzasController extends DTPizzasAPIController {
 	{
 		//
 	}
+
+
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /dtpizzasapi/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function apiDestroy($id)
+    {
+        //
+    }
+
 
 }

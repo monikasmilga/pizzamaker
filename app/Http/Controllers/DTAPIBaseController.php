@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\Controller;
 
-class DTPizzasAPIController extends Controller {
+class DTAPIBaseController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,21 +10,12 @@ class DTPizzasAPIController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function apiIndex()
 	{
 		//
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /dtpizzasapi/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+
 
 	/**
 	 * Store a newly created resource in storage.
@@ -32,7 +23,7 @@ class DTPizzasAPIController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function apiStore()
 	{
 		//
 	}
@@ -44,22 +35,11 @@ class DTPizzasAPIController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function apiShow($id)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /dtpizzasapi/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -68,7 +48,7 @@ class DTPizzasAPIController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function apiUpdate($id)
 	{
 		//
 	}
@@ -80,7 +60,7 @@ class DTPizzasAPIController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function apiDestroy($id)
 	{
 		//
 	}

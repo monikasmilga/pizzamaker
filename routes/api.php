@@ -21,18 +21,18 @@ Route::group(['prefix' => 'api/v1'], function () {
 
     Route::group(['prefix' => 'pizzas'], function () {
 
-        Route::get('/', ['as' => 'api.pizzas.index', 'uses' => 'DTPizzasAPIController@index']);
+        Route::get('/', ['as' => 'api.pizzas.index', 'uses' => 'DTAPIBaseController@index']);
 
-        Route::get('/create', ['as' => 'api.pizzas.create', 'uses' => 'DTPizzasAPIController@create']);
-        Route::post('/create', ['uses' => 'DTPizzasAPIController@store']);
+        Route::get('/create', ['as' => 'api.pizzas.create', 'uses' => 'DTAPIBaseController@create']);
+        Route::post('/create', ['uses' => 'DTAPIBaseController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
-            Route::get('/edit', ['as' => 'api.pizzas.edit', 'uses' => 'DTPizzasAPIController@edit']);
-            Route::post('/edit', ['uses' => 'DTPizzasAPIController@update']);
+            Route::get('/edit', ['as' => 'api.pizzas.edit', 'uses' => 'DTAPIBaseController@edit']);
+            Route::post('/edit', ['uses' => 'DTAPIBaseController@update']);
 
-            Route::get('/', ['uses' => 'DTPizzasAPIController@show']);
-            Route::delete('/', ['as' => 'api.pizzas.delete', 'uses' => 'DTPizzasAPIController@destroy']);
+            Route::get('/', ['uses' => 'DTAPIBaseController@show']);
+            Route::delete('/', ['as' => 'api.pizzas.delete', 'uses' => 'DTAPIBaseController@destroy']);
         });
     });
 });
