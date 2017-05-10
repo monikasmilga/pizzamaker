@@ -1,12 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller;
 
-
-class DTPizzasController extends DTPizzasAPIController {
+class DTPizzasAPIController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pizzas
+	 * GET /dtpizzasapi
 	 *
 	 * @return Response
 	 */
@@ -17,7 +17,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pizzas/create
+	 * GET /dtpizzasapi/create
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pizzas
+	 * POST /dtpizzasapi
 	 *
 	 * @return Response
 	 */
@@ -39,7 +39,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /pizzas/{id}
+	 * GET /dtpizzasapi/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,7 +51,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pizzas/{id}/edit
+	 * GET /dtpizzasapi/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -63,7 +63,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pizzas/{id}
+	 * PUT /dtpizzasapi/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -75,7 +75,7 @@ class DTPizzasController extends DTPizzasAPIController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pizzas/{id}
+	 * DELETE /dtpizzasapi/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
