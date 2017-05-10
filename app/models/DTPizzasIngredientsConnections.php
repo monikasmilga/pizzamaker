@@ -6,10 +6,10 @@ namespace App\models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class DTPizzaIngredientsConnections
+ * Class DTPizzasIngredientsConnections
  * @package App\models
  */
-class DTPizzaIngredientsConnections extends Model
+class DTPizzasIngredientsConnections extends Model
 {
     /**
      * @var table name
