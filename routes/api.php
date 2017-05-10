@@ -21,18 +21,16 @@ Route::group(['prefix' => 'api/v1'], function () {
 
     Route::group(['prefix' => 'pizzas'], function () {
 
-        Route::get('/', ['as' => 'api.pizzas.index', 'uses' => 'DTAPIBaseController@index']);
+        Route::get('/', ['as' => 'api.pizzas.index', 'uses' => 'DTPizzasController@apiIndex']);
 
-        Route::get('/create', ['as' => 'api.pizzas.create', 'uses' => 'DTAPIBaseController@create']);
-        Route::post('/create', ['uses' => 'DTAPIBaseController@store']);
+        Route::post('/create', ['uses' => 'DTPizzasController@apiStore']);
 
         Route::group(['prefix' => '{id}'], function () {
 
-            Route::get('/edit', ['as' => 'api.pizzas.edit', 'uses' => 'DTAPIBaseController@edit']);
-            Route::post('/edit', ['uses' => 'DTAPIBaseController@update']);
+            Route::post('/edit', ['uses' => 'DTPizzasController@apiUpdate']);
 
-            Route::get('/', ['uses' => 'DTAPIBaseController@show']);
-            Route::delete('/', ['as' => 'api.pizzas.delete', 'uses' => 'DTAPIBaseController@destroy']);
+            Route::get('/', ['uses' => 'DTPizzasController@apiShow']);
+            Route::delete('/', ['as' => 'api.pizzas.delete', 'uses' => 'DTPizzasController@apiDestroy']);
         });
     });
 });
