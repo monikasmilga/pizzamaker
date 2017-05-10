@@ -28,8 +28,13 @@ class CoreModel extends Model
     protected static function boot() {
         parent::boot();
         static::creating(function($model) {
-            $model->{$model->getKeyName()} = Uuid::uuid4();
+            if(!isset($model->attributes['id'])) {
+                $model->attributes['id'] = Uuid::uuid4();
+            } else {
+                $model->{$model->getKeyName()} = $model->attributes['id'];
+            }
         });
 
     }
 }
+
