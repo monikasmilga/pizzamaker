@@ -15,6 +15,18 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
+    /**
+     * Display a listing of the resource.
+     * GET /ingredients
+     *
+     * @return Response
+     */
+    public function adminIndex()
+    {
+        //
+    }
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /ingredients/create
@@ -26,7 +38,18 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
-	/**
+    /**
+     * Show the form for creating a new resource.
+     * GET /ingredients/create
+     *
+     * @return Response
+     */
+    public function adminCreate()
+    {
+        //
+    }
+
+    /**
 	 * Store a newly created resource in storage.
 	 * POST /ingredients
 	 *
@@ -37,7 +60,18 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
-	/**
+    /**
+     * Store a newly created resource in storage.
+     * POST /ingredients
+     *
+     * @return Response
+     */
+    public function adminStore()
+    {
+        //
+    }
+
+    /**
 	 * Display the specified resource.
 	 * GET /ingredients/{id}
 	 *
@@ -49,7 +83,19 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
-	/**
+    /**
+     * Display the specified resource.
+     * GET /ingredients/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminShow($id)
+    {
+        //
+    }
+
+    /**
 	 * Show the form for editing the specified resource.
 	 * GET /ingredients/{id}/edit
 	 *
@@ -61,7 +107,19 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
-	/**
+    /**
+     * Show the form for editing the specified resource.
+     * GET /ingredients/{id}/edit
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminEdit($id)
+    {
+        //
+    }
+
+    /**
 	 * Update the specified resource in storage.
 	 * PUT /ingredients/{id}
 	 *
@@ -73,7 +131,19 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
-	/**
+    /**
+     * Update the specified resource in storage.
+     * PUT /ingredients/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminUpdate($id)
+    {
+        //
+    }
+
+    /**
 	 * Remove the specified resource from storage.
 	 * DELETE /ingredients/{id}
 	 *
@@ -81,6 +151,18 @@ class DTIngredientsController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /ingredients/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminDestroy($id)
 	{
 		//
 	}

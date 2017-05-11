@@ -16,6 +16,17 @@ class DTUsersController extends Controller {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 * GET /dtusers
+	 *
+	 * @return Response
+	 */
+	public function adminIndex()
+	{
+		//
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 * GET /dtusers/create
 	 *
@@ -27,12 +38,34 @@ class DTUsersController extends Controller {
 	}
 
 	/**
+	 * Show the form for creating a new resource.
+	 * GET /dtusers/create
+	 *
+	 * @return Response
+	 */
+	public function adminCreate()
+	{
+		//
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 * POST /dtusers
 	 *
 	 * @return Response
 	 */
 	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /dtusers
+	 *
+	 * @return Response
+	 */
+	public function adminStore()
 	{
 		//
 	}
@@ -50,6 +83,18 @@ class DTUsersController extends Controller {
 	}
 
 	/**
+	 * Display the specified resource.
+	 * GET /dtusers/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminShow($id)
+	{
+		//
+	}
+
+	/**
 	 * Show the form for editing the specified resource.
 	 * GET /dtusers/{id}/edit
 	 *
@@ -57,6 +102,18 @@ class DTUsersController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /dtusers/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -74,6 +131,18 @@ class DTUsersController extends Controller {
 	}
 
 	/**
+	 * Update the specified resource in storage.
+	 * PUT /dtusers/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminUpdate($id)
+	{
+		//
+	}
+
+	/**
 	 * Remove the specified resource from storage.
 	 * DELETE /dtusers/{id}
 	 *
@@ -81,6 +150,17 @@ class DTUsersController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id)
+	{
+		//
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /dtusers/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminDestroy($id)
 	{
 		//
 	}

@@ -15,6 +15,17 @@ class DTCheesesController extends Controller {
 		//
 	}
 
+    /**
+     * Display a listing of the resource.
+     * GET /cheeses
+     *
+     * @return Response
+     */
+    public function adminIndex()
+    {
+        //
+    }
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /cheeses/create
@@ -25,6 +36,17 @@ class DTCheesesController extends Controller {
 	{
 		//
 	}
+
+    /**
+     * Show the form for creating a new resource.
+     * GET /cheeses/create
+     *
+     * @return Response
+     */
+    public function adminCreate()
+    {
+        //
+    }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -37,6 +59,16 @@ class DTCheesesController extends Controller {
 		//
 	}
 
+	/**
+     * Store a newly created resource in storage.
+     * POST /cheeses
+     *
+     * @return Response
+     */
+    public function adminStore()
+    {
+        //
+    }
 	/**
 	 * Display the specified resource.
 	 * GET /cheeses/{id}
@@ -56,7 +88,32 @@ class DTCheesesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
+	public function adminShow($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /cheeses/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function edit($id)
+	{
+		//
+	}
+
+    /**
+     * Show the form for editing the specified resource.
+     * GET /cheeses/{id}/edit
+     *
+     * @param  int  $id
+     * @return Response
+     */
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -68,7 +125,21 @@ class DTCheesesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /cheeses/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+
+	public function adminUpdate($id)
 	{
 		//
 	}
@@ -81,6 +152,18 @@ class DTCheesesController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /cheeses/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminDestroy($id)
 	{
 		//
 	}

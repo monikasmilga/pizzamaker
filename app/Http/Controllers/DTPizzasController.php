@@ -14,7 +14,18 @@ class DTPizzasController extends DTAPIBaseController {
 	{
 		//
 	}
-    
+
+	/**
+	 * Display a listing of the resource.
+	 * GET /pizzas
+	 *
+	 * @return Response
+	 */
+	public function adminIndex()
+	{
+		//
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /pizzas/create
@@ -27,12 +38,34 @@ class DTPizzasController extends DTAPIBaseController {
 	}
 
 	/**
+	 * Show the form for creating a new resource.
+	 * GET /pizzas/create
+	 *
+	 * @return Response
+	 */
+	public function adminCreate()
+	{
+		//
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 * POST /pizzas
 	 *
 	 * @return Response
 	 */
 	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /pizzas
+	 *
+	 * @return Response
+	 */
+	public function adminStore()
 	{
 		//
 	}
@@ -50,6 +83,18 @@ class DTPizzasController extends DTAPIBaseController {
 	}
 
 	/**
+	 * Display the specified resource.
+	 * GET /pizzas/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminShow($id)
+	{
+		//
+	}
+
+	/**
 	 * Show the form for editing the specified resource.
 	 * GET /pizzas/{id}/edit
 	 *
@@ -57,6 +102,18 @@ class DTPizzasController extends DTAPIBaseController {
 	 * @return Response
 	 */
 	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /pizzas/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -81,6 +138,17 @@ class DTPizzasController extends DTAPIBaseController {
 	 * @return Response
 	 */
 	public function destroy($id)
+	{
+		//
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /pizzas/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminDestroy($id)
 	{
 		//
 	}

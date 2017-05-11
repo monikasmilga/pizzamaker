@@ -16,6 +16,17 @@ class DTPermissionsController extends Controller {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 * GET /permissions
+	 *
+	 * @return Response
+	 */
+	public function adminIndex()
+	{
+		//
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 * GET /permissions/create
 	 *
@@ -27,12 +38,34 @@ class DTPermissionsController extends Controller {
 	}
 
 	/**
+	 * Show the form for creating a new resource.
+	 * GET /permissions/create
+	 *
+	 * @return Response
+	 */
+	public function adminCreate()
+	{
+		//
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 * POST /permissions
 	 *
 	 * @return Response
 	 */
 	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /permissions
+	 *
+	 * @return Response
+	 */
+	public function adminStore()
 	{
 		//
 	}
@@ -50,6 +83,18 @@ class DTPermissionsController extends Controller {
 	}
 
 	/**
+	 * Display the specified resource.
+	 * GET /permissions/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminShow($id)
+	{
+		//
+	}
+
+	/**
 	 * Show the form for editing the specified resource.
 	 * GET /permissions/{id}/edit
 	 *
@@ -57,6 +102,18 @@ class DTPermissionsController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /permissions/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -74,6 +131,18 @@ class DTPermissionsController extends Controller {
 	}
 
 	/**
+	 * Update the specified resource in storage.
+	 * PUT /permissions/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminUpdate($id)
+	{
+		//
+	}
+
+	/**
 	 * Remove the specified resource from storage.
 	 * DELETE /permissions/{id}
 	 *
@@ -81,6 +150,18 @@ class DTPermissionsController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /permissions/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function adminDestroy($id)
 	{
 		//
 	}
