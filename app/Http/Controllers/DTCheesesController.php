@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTCheeses;
 use Illuminate\Routing\Controller;
 
 class DTCheesesController extends Controller {
@@ -23,7 +24,10 @@ class DTCheesesController extends Controller {
      */
     public function adminIndex()
     {
-        //
+        $configuration['list']=DTCheeses::get()->toArray();
+        $configuration['routeShow']='app.cheeses.show';
+        $configuration['routeEdit']='app.cheeses.edit';
+        return view("admin-list", $configuration);
     }
 
 	/**

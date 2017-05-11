@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
 class DTIngredientsController extends Controller {
@@ -12,7 +13,8 @@ class DTIngredientsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+	    $configuration['list']=DTIngredients::get()->toArray();
+		return view("front-end-list", $configuration);
 	}
 
     /**
@@ -23,7 +25,11 @@ class DTIngredientsController extends Controller {
      */
     public function adminIndex()
     {
-        //
+        $configuration['list']=DTIngredients::get()->toArray();
+        $configuration['routeShow']='app.ingredients.show';
+        $configuration['routeEdit']='app.ingredients.edit';
+
+        return view("admin-list", $configuration);
     }
 
 

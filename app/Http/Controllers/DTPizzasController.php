@@ -12,7 +12,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function index()
 	{
-		//
+		return view ('front-end');
 	}
 
 	/**
@@ -23,7 +23,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminIndex()
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -34,7 +34,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function create()
 	{
-		//
+        return view ('front-end');
 	}
 
 	/**
@@ -45,7 +45,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminCreate()
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -56,7 +56,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function store()
 	{
-		//
+        return view ('front-end');
 	}
 
 	/**
@@ -67,7 +67,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminStore()
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -79,7 +79,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -91,7 +91,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminShow($id)
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        return view ('front-end');
 	}
 
 	/**
@@ -115,7 +115,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminEdit($id)
 	{
-		//
+        return view ('admin');
 	}
 
 	/**
@@ -127,8 +127,20 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function update($id)
 	{
-		//
+        return view ('front-end');
 	}
+
+    /**
+     * Update the specified resource in storage.
+     * PUT /pizzas/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminUpdate($id)
+    {
+        return view ('admin');
+    }
 
 	/**
 	 * Remove the specified resource from storage.
@@ -139,7 +151,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        return view ('front-end');
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -150,6 +162,6 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        return view ('admin');
 	}
 }
