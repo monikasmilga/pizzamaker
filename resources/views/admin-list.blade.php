@@ -26,9 +26,35 @@
                 @endforeach
                 <td><a href="{{route($routeShow, $record['id'])}}"><button> view</button></a></td>
                 <td><a href="{{route($routeEdit, $record['id'])}}"><button> edit</button></a></td>
-                <td><a href=""><button> delete</button></a></td>
+                <td><a onclick="deleteItem('{{route($routeShow, $record['id'])}}')"><button> delete</button></a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
+@endsection
+
+@section('scripts')
+    <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function deleteItem(route) {
+            $.ajax({
+                url: route,
+                type: 'DELETE',
+                dataType: 'json',
+                success: function(){
+                    alert('DELETED');
+                },
+                error: function(){
+                    alert('ERROR');
+                }
+            });
+        }
+
+    </script>
 @endsection

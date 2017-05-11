@@ -95,7 +95,7 @@ class DTCheesesController extends Controller {
 
 	public function adminShow($id)
 	{
-		//
+        return view('admin-single');
 	}
 
 	/**
@@ -119,8 +119,8 @@ class DTCheesesController extends Controller {
      */
 	public function adminEdit($id)
 	{
-		//
-	}
+        return view('admin-single');
+    }
 
 	/**
 	 * Update the specified resource in storage.

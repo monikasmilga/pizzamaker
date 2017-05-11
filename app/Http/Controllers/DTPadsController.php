@@ -96,8 +96,8 @@ class DTPadsController extends Controller {
 	 */
 	public function adminShow($id)
 	{
-		//
-	}
+        return view('admin-single');
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
