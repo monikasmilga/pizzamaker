@@ -17,6 +17,7 @@ class DTRolesController extends Controller {
         $configuration['list'] = DTRoles::get()->toArray();
         $configuration['routeView'] = 'app.roles.show';
         $configuration['routeEdit'] = 'app.roles.edit';
+        $configuration['routeDelete'] = 'app.roles.delete';
         return view('admin.list', $configuration);
 
 
@@ -58,9 +59,9 @@ class DTRolesController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['list'] = DTRoles::find($id);
+        $configuration['list'] = DTRoles::find($id)->toArray();
 
-        return view('admin.single');
+        return view('admin.single', $configuration);
 	}
 
 	/**
@@ -98,5 +99,12 @@ class DTRolesController extends Controller {
 	{
 		//
 	}
+
+    public function adminDestroy($id)
+    {
+        DTRoles::destroy($id);
+
+        return '{"success":true}';
+    }
 
 }

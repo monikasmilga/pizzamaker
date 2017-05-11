@@ -16,6 +16,7 @@ class DTPermissionsController extends Controller {
         $configuration['list'] = DTPermissions::get()->toArray();
         $configuration['routeView'] = 'app.permissions.show';
         $configuration['routeEdit'] = 'app.permissions.edit';
+        $configuration['routeDelete'] = 'app.permissions.delete';
 
         return view('admin.list');
 	}
@@ -56,9 +57,9 @@ class DTPermissionsController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['record'] = DTPermissions::find($id);
+        $configuration['record'] = DTPermissions::find($id)->toArray();
 
-        return view('admin.single');
+        return view('admin.single', $configuration);
 	}
 
 	/**
@@ -96,5 +97,12 @@ class DTPermissionsController extends Controller {
 	{
 		//
 	}
+
+    public function adminDestroy($id)
+    {
+        DTPermissions::destroy($id);
+
+        return '{"success":true}';
+    }
 
 }

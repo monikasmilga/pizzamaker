@@ -16,6 +16,7 @@ class DTPadsController extends Controller {
         $configuration['list'] = DTPads::get()->toArray();
         $configuration['routeView'] = 'app.pads.show';
         $configuration['routeEdit'] = 'app.pads.edit';
+        $configuration['routeDelete'] = 'app.pads.delete';
 
         return view('admin.list', $configuration);
 	}
@@ -56,9 +57,9 @@ class DTPadsController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['record'] = DTPads::find($id);
+        $configuration['record'] = DTPads::find($id)->toArray();
 
-        return view('admin.single');
+        return view('admin.single', $configuration);
 	}
 
 	/**
@@ -96,5 +97,12 @@ class DTPadsController extends Controller {
 	{
 		//
 	}
+
+    public function adminDestroy($id)
+    {
+        DTPads::destroy($id);
+
+        return '{"success":true}';
+    }
 
 }

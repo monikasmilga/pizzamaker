@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTRoles;
 use App\models\DTUsers;
 use Illuminate\Routing\Controller;
 
@@ -16,6 +17,7 @@ class DTUsersController extends Controller {
         $configuration['list'] = DTUsers::get()->toArray();
         $configuration['routeView'] = 'app.users.show';
         $configuration['routeEdit'] = 'app.pizzas.edit';
+        $configuration['routeDelete'] = 'app.pizzas.delete';
 
         return view('admin.list', $configuration);
 	}
@@ -56,9 +58,9 @@ class DTUsersController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['list'] = DTUsers::find($id);
+        $configuration['list'] = DTUsers::find($id)->toArray();
 
-        return view('admin.single');
+        return view('admin.single', $configuration);
 	}
 
 	/**
@@ -96,5 +98,12 @@ class DTUsersController extends Controller {
 	{
 		//
 	}
+
+    public function adminDestroy($id)
+    {
+        DTRoles::destroy($id);
+
+        return '{"success":true}';
+    }
 
 }

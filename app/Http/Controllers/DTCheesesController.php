@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\models\DTCheeses;
+use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
 class DTCheesesController extends Controller {
@@ -22,6 +23,7 @@ class DTCheesesController extends Controller {
         $configuration['list'] = DTCheeses::get()->toArray();
         $configuration['routeView'] = 'app.cheeses.show';
         $configuration['routeEdit'] = 'app.cheeses.edit';
+        $configuration['routeDelete'] = 'app.cheeses.delete';
 
 		return view('admin.list', $configuration);
 	}
@@ -62,9 +64,9 @@ class DTCheesesController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['record'] = DTCheeses::find($id);
+        $configuration['record'] = DTCheeses::find($id)->toArray();
 
-        return view('admin.single');
+        return view('admin.single', $configuration);
 	}
 
 	/**
@@ -100,7 +102,14 @@ class DTCheesesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+
+	}
+
+    public function adminDestroy($id)
+    {
+        DTCheeses::destroy($id);
+
+        return '{"success":true}';
 	}
 
 }
