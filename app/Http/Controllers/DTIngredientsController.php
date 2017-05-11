@@ -57,7 +57,7 @@ class DTIngredientsController extends Controller {
 
     public function adminShow($id)
     {
-        $configuration['record'] = DTIngredients::find($id);
+        $configuration['record'] = DTIngredients::find($id)->toArray();
 
         return view('admin.single', $configuration);
 	}
@@ -101,6 +101,8 @@ class DTIngredientsController extends Controller {
     public function adminDestroy($id)
     {
         DTIngredients::destroy($id);
+
+        return '{"success":true}';
 	}
 
 }

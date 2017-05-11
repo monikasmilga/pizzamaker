@@ -13,15 +13,16 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function index()
 	{
-	    $configuration['list'] = $this->apiIndex()->toArray();
+	    $configuration['list'] = DTPizzas::get()->toArray();
 		return view('front-end.list', $configuration);
 	}
 
     public function adminIndex()
     {
-        $configuration['list'] = $this->apiIndex()->toArray();
+        $configuration['list'] = DTPizzas::get()->toArray();
         $configuration['routeView'] = 'app.pizzas.show';
         $configuration['routeEdit'] = 'app.pizzas.edit';
+        $configuration['routeDelete'] = 'app.pizzas.delete';
 
         return view('admin.list', $configuration);
     }
@@ -62,10 +63,10 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function show($id)
 	{
-	    $configuration['record'] = DTPizzas::find($id);
+	    $configuration['record'] = DTPizzas::find($id)->toArray();
 
 
-		return view('front-end.single');
+		return view('front-end.single', $configuration);
 	}
 
     public function adminShow($id)
@@ -110,5 +111,12 @@ class DTPizzasController extends BaseAPIController {
 	{
 		//
 	}
+
+    public function adminDestroy($id)
+    {
+        DTPizzas::destroy($id);
+
+        return '{"success":true}';
+    }
 
 }
