@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTUsers;
 use Illuminate\Routing\Controller;
 
 class DTUsersController extends Controller {
@@ -10,9 +11,13 @@ class DTUsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function adminIndex()
 	{
-		//
+        $configuration['list'] = DTUsers::get()->toArray();
+        $configuration['routeView'] = 'app.users.show';
+        $configuration['routeEdit'] = 'app.pizzas.edit';
+
+        return view('admin.list', $configuration);
 	}
 
 	/**
@@ -47,6 +52,13 @@ class DTUsersController extends Controller {
 	public function show($id)
 	{
 		//
+	}
+
+    public function adminShow($id)
+    {
+        $configuration['list'] = DTUsers::find($id);
+
+        return view('admin.single');
 	}
 
 	/**

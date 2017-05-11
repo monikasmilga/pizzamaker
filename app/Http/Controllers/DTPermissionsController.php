@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTPermissions;
 use Illuminate\Routing\Controller;
 
 class DTPermissionsController extends Controller {
@@ -10,9 +11,13 @@ class DTPermissionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function adminIndex()
 	{
-		//
+        $configuration['list'] = DTPermissions::get()->toArray();
+        $configuration['routeView'] = 'app.permissions.show';
+        $configuration['routeEdit'] = 'app.permissions.edit';
+
+        return view('admin.list');
 	}
 
 	/**
@@ -47,6 +52,13 @@ class DTPermissionsController extends Controller {
 	public function show($id)
 	{
 		//
+	}
+
+    public function adminShow($id)
+    {
+        $configuration['record'] = DTPermissions::find($id);
+
+        return view('admin.single');
 	}
 
 	/**

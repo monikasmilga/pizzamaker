@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTPads;
 use Illuminate\Routing\Controller;
 
 class DTPadsController extends Controller {
@@ -10,9 +11,13 @@ class DTPadsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function adminIndex()
 	{
-		//
+        $configuration['list'] = DTPads::get()->toArray();
+        $configuration['routeView'] = 'app.pads.show';
+        $configuration['routeEdit'] = 'app.pads.edit';
+
+        return view('admin.list', $configuration);
 	}
 
 	/**
@@ -47,6 +52,13 @@ class DTPadsController extends Controller {
 	public function show($id)
 	{
 		//
+	}
+
+    public function adminShow($id)
+    {
+        $configuration['record'] = DTPads::find($id);
+
+        return view('admin.single');
 	}
 
 	/**

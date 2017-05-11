@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
 class DTIngredientsController extends Controller {
@@ -10,9 +11,14 @@ class DTIngredientsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function adminIndex()
 	{
-		//
+	    $configuration['list'] = DTIngredients::get()->toArray();
+	    $configuration['routeView'] = 'app.ingredients.show';
+	    $configuration['routeEdit'] = 'app.ingredients.edit';
+	    $configuration['routeDelete'] = 'app.ingredients.delete';
+
+		return view('admin.list', $configuration);
 	}
 
 	/**
@@ -49,6 +55,13 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
+    public function adminShow($id)
+    {
+        $configuration['record'] = DTIngredients::find($id);
+
+        return view('admin.single', $configuration);
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 * GET /ingredients/{id}/edit
@@ -83,6 +96,11 @@ class DTIngredientsController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+    public function adminDestroy($id)
+    {
+        DTIngredients::destroy($id);
 	}
 
 }

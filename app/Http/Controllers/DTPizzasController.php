@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTPizzas;
 use Illuminate\Routing\Controller;
 
 class DTPizzasController extends BaseAPIController {
@@ -12,8 +13,23 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function index()
 	{
-		//
+	    $configuration['list'] = $this->apiIndex()->toArray();
+		return view('front-end.list', $configuration);
 	}
+
+    public function adminIndex()
+    {
+        $configuration['list'] = $this->apiIndex()->toArray();
+        $configuration['routeView'] = 'app.pizzas.show';
+        $configuration['routeEdit'] = 'app.pizzas.edit';
+
+        return view('admin.list', $configuration);
+    }
+
+    public function apiIndex()
+    {
+        return DTPizzas::get();
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -46,7 +62,17 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function show($id)
 	{
-		//
+	    $configuration['record'] = DTPizzas::find($id);
+
+
+		return view('front-end.single');
+	}
+
+    public function adminShow($id)
+    {
+        $configuration['record'] = DTPizzas::find($id);
+
+        return view('admin.single');
 	}
 
 	/**
