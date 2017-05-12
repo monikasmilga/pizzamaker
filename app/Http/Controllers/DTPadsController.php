@@ -32,6 +32,19 @@ class DTPadsController extends Controller {
 		//
 	}
 
+    public function adminCreate()
+    {
+
+        $fillables = new DTPads();
+
+
+        $configuration['fields'] = $fillables->getFillable();
+        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['list'] = DTPads::get()->toArray();
+
+        return view('admin.createform', $configuration);
+    }
+
 	/**
 	 * Store a newly created resource in storage.
 	 * POST /pads
@@ -42,6 +55,18 @@ class DTPadsController extends Controller {
 	{
 		//
 	}
+
+    public function adminStore()
+    {
+        $data = request()->all();
+
+        DTPads::create($data);
+
+        return redirect()->back();
+
+    }
+
+
 
 	/**
 	 * Display the specified resource.
@@ -100,9 +125,10 @@ class DTPadsController extends Controller {
 
     public function adminDestroy($id)
     {
-        DTPads::destroy($id);
+        if(DTPads::destroy($id)) {
+            return '{"success":true}';
+        }
 
-        return '{"success":true}';
     }
 
 }

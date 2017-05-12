@@ -5,18 +5,26 @@ use Illuminate\Routing\Controller;
 
 class DTIngredientsController extends Controller {
 
+
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /ingredients
 	 *
 	 * @return Response
 	 */
+
+    public function index()
+    {
+
+	}
+
 	public function adminIndex()
 	{
+        $fillables = new DTIngredients();
+
 	    $configuration['list'] = DTIngredients::get()->toArray();
-	    $configuration['routeView'] = 'app.ingredients.show';
-	    $configuration['routeEdit'] = 'app.ingredients.edit';
-	    $configuration['routeDelete'] = 'app.ingredients.delete';
+        $configuration['tableName'] = $fillables->getTableName();
 
 		return view('admin.list', $configuration);
 	}
@@ -29,7 +37,20 @@ class DTIngredientsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
+	}
+
+    public function adminCreate()
+    {
+
+        $fillables = new DTIngredients();
+
+
+        $configuration['fields'] = $fillables->getFillable();
+        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['list'] = DTIngredients::get()->toArray();
+
+        return view('admin.createform', $configuration);
 	}
 
 	/**
@@ -40,7 +61,17 @@ class DTIngredientsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+
+	}
+
+    public function adminStore()
+    {
+        $data = request()->all();
+
+        DTIngredients::create($data);
+
+        return redirect()->back();
+
 	}
 
 	/**
@@ -57,7 +88,11 @@ class DTIngredientsController extends Controller {
 
     public function adminShow($id)
     {
+        $fillables = new DTIngredients();
+
         $configuration['record'] = DTIngredients::find($id)->toArray();
+        $configuration['tableName'] = $fillables->getTableName();
+
 
         return view('admin.single', $configuration);
 	}
@@ -100,9 +135,12 @@ class DTIngredientsController extends Controller {
 
     public function adminDestroy($id)
     {
-        DTIngredients::destroy($id);
 
-        return '{"success":true}';
+        if(DTIngredients::destroy($id)) {
+            return '{"success":true}';
+        }
+
+
 	}
 
 }

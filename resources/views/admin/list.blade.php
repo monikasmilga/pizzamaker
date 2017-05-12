@@ -19,14 +19,14 @@
             <tbody>
 
             @foreach($list as $key => $record)
-                <tr>
+                <tr id="del">
                     @foreach($record as $key => $value)
                         <td>{{$value}}</td>
 
                     @endforeach
-                    <td><a class="btn btn-primary btn-sm" href="{{route($routeView, $record['id'])}}">View</a></td>
-                    <td><a class="btn btn-success btn-sm" href="{{route($routeEdit, $record['id'])}}">Edit</a></td>
-                    <td><a onclick="deleteItem('{{route($routeDelete, $record['id'])}}')" class="btn btn-danger btn-sm" href="">Delete</a></td>
+                    <td><a class="btn btn-primary btn-sm" href="{{route('app.' . $tableName . '.show', $record['id'])}}">View</a></td>
+                    <td><a class="btn btn-success btn-sm" href="{{route('app.' . $tableName . '.edit', $record['id'])}}">Edit</a></td>
+                    <td><a onclick="deleteItem('{{route('app.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" >Delete</a></td>
                 </tr>
             @endforeach
 
@@ -60,11 +60,11 @@
                 data: {},
                 dataType: 'json',
                 success: function () {
-                    alert('DELETED')
+                    $("#del").fadeOut(1000)
 
                 },
                 error: function () {
-                    alert('Error');
+                    alert('error');
                 }
 
             });

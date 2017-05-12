@@ -101,9 +101,10 @@ class DTUsersController extends Controller {
 
     public function adminDestroy($id)
     {
-        DTRoles::destroy($id);
+        if(DTUsers::destroy($id)) {
+            return '{"success":true}';
+        }
 
-        return '{"success":true}';
     }
 
 }

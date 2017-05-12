@@ -7,26 +7,64 @@
 
             <thead>
             <tr>
-                @foreach($record as $key => $value)
-                        <th>{{$key}}</th>
-                @endforeach
+                <th>key</th>
+                <th>value</th>
             </tr>
-
 
             </thead>
             <tbody>
 
-            <tr>
                 @foreach($record as $key => $value)
-                    <td>{{$value}}</td>
+                    <tr>
+                        <td>{{$key}}</td>
+                        <td>{{$value}}</td>
+                    </tr>
                 @endforeach
-            </tr>
 
             </tbody>
         </table>
 
         <a class="btn btn-sm btn-primary" href="{{route('app.ingredients.index')}}">Back</a>
+        <a class="btn btn-success btn-sm" href="{{route('app.ingredients.index')}}">Edit</a>
+        <a onclick="deleteItem('{{route('app.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" href="{{route('app.ingredients.index')}}">Delete</a>
 
     </div>
 
+@endsection
+
+@section('script')
+    <script>
+
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function deleteItem(route) {
+
+
+
+
+            $.ajax({
+
+                url: route,
+                type: 'DELETE',
+                data: {},
+                dataType: 'json',
+                success: function () {
+                    alert('DELETED')
+
+                },
+                error: function () {
+                    alert('Error');
+                }
+
+            });
+
+        }
+
+    </script>
 @endsection

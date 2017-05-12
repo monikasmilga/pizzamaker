@@ -76,6 +76,11 @@ class DTPizzasController extends BaseAPIController {
         return view('admin.single');
 	}
 
+    public function apiShow($id)
+    {
+        return DTPizzas::find($id)->get();
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 * GET /pizzas/{id}/edit
@@ -114,9 +119,10 @@ class DTPizzasController extends BaseAPIController {
 
     public function adminDestroy($id)
     {
-        DTPizzas::destroy($id);
+        if(DTPizzas::destroy($id)) {
+            return '{"success":true}';
+        }
 
-        return '{"success":true}';
     }
 
 }

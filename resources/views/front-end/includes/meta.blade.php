@@ -1,7 +1,1 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Aivaras Vainius
- * Date: 2017.05.11
- * Time: 11:26
- */
+<meta name="csrf-token" content="{{ csrf_token() }}">
