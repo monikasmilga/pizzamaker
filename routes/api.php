@@ -30,7 +30,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('/edit', ['uses' => 'DTPizzasController@apiUpdate']);
 
             Route::get('/', ['uses' => 'DTPizzasController@apiShow']);
-            Route::delete('/', ['as' => 'api.pizzas.delete', 'uses' => 'DTPizzasController@apiDestroy']);
+            Route::delete('/', ['as' => 'api.pizzas.show', 'uses' => 'DTPizzasController@apiDestroy']);
         });
     });
 });

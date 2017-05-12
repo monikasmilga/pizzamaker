@@ -99,7 +99,10 @@ class DTIngredientsController extends Controller {
      */
     public function adminShow($id)
     {
-        return view('admin-single');
+        $configuration['record']=DTIngredients::find($id)->toArray();
+        $configuration['routeEdit']='app.ingredients.edit';
+        $configuration['routeShow']='app.ingredients.show';
+        return view("admin-single", $configuration);
     }
 
     /**
@@ -124,7 +127,6 @@ class DTIngredientsController extends Controller {
     public function adminEdit($id)
     {
         return view('admin-single');
-
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTPizzas;
 use Illuminate\Routing\Controller;
 
 class DTAPIBaseController extends Controller
@@ -37,7 +38,7 @@ class DTAPIBaseController extends Controller
      */
     public function apiShow($id)
     {
-        return response()->json(['success' => false, 'message' => 'Method not implemented']);
+        //return response()->json(['success' => false, 'message' => 'Method not implemented']);
     }
 
 

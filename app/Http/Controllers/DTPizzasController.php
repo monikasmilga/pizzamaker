@@ -2,6 +2,8 @@
 
 
 
+use App\models\DTPizzas;
+
 class DTPizzasController extends DTAPIBaseController {
 
 	/**
@@ -26,6 +28,19 @@ class DTPizzasController extends DTAPIBaseController {
         return view ('admin');
 	}
 
+    /**
+     * Display a listing of the resource.
+     * GET /dtpizzasapi
+     *
+     * @return mixed
+     */
+
+    public function apiIndex()
+    {
+        $config = [];
+        $config['list'] = DTPizzas::with(['cheeses', 'crusts', 'ingredients'])->get();
+        return $config;
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /pizzas/create
@@ -93,6 +108,18 @@ class DTPizzasController extends DTAPIBaseController {
 	{
         return view ('admin');
 	}
+
+    /**
+     * Display the specified resource.
+     * GET /dtpizzasapi/{id}
+     *
+     * @param  int $id
+     * @return mixed
+     */
+    public function apiShow($id)
+    {
+        return DTPizzas::with('cheeses', 'crusts', 'ingredients')->find($id);
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
