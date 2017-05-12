@@ -45,7 +45,7 @@ class DTUsersController extends Controller {
 	 */
 	public function adminCreate()
 	{
-		//
+        return view ('form');
 	}
 
 	/**

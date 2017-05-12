@@ -45,7 +45,7 @@ class DTPermissionsController extends Controller {
 	 */
 	public function adminCreate()
 	{
-		//
+        return view ('form');
 	}
 
 	/**

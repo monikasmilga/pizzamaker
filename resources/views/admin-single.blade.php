@@ -13,8 +13,10 @@
         </thead>
         <tbody>
         @foreach($record as $key => $value)
-            <tr><td> {{ $key }} </td>
-            <td> {{$value}}</td></tr>
+            <tr>
+                <td> {{ $key }} </td>
+                <td> {{$value}}</td>
+            </tr>
         @endforeach
         </tbody>
     </table>

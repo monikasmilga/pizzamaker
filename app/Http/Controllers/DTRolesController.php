@@ -45,7 +45,7 @@ class DTRolesController extends Controller {
 	 */
 	public function adminCreate()
 	{
-		//
+        return view ('form');
 	}
 
 	/**

@@ -49,7 +49,10 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function create()
 	{
-        return view ('front-end');
+        $config['pads'] = DTPads::pluck('name', 'id');
+        $config['cheeses'] = DTCheeses::pluck('name', 'id');
+        $config['ingredients'] = DTIngredients::pluck('name', 'id');
+        return view ('form', $config);
 	}
 
 	/**
@@ -60,7 +63,7 @@ class DTPizzasController extends DTAPIBaseController {
 	 */
 	public function adminCreate()
 	{
-        return view ('admin');
+        return view ('form');
 	}
 
 	/**

@@ -50,7 +50,7 @@ class DTPadsController extends Controller {
 	 */
 	public function adminCreate()
 	{
-		//
+        return view ('form');
 	}
 
 	/**

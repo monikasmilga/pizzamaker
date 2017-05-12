@@ -2,6 +2,7 @@
 
 use App\models\DTCheeses;
 use App\models\DTIngredients;
+use App\models\DTPads;
 use Illuminate\Routing\Controller;
 
 class DTIngredientsController extends Controller {
@@ -41,9 +42,9 @@ class DTIngredientsController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-		//
-	}
+    {
+//
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +54,12 @@ class DTIngredientsController extends Controller {
      */
     public function adminCreate()
     {
-        //
+        $fillables = new DTCheeses();
+
+        $configuration['fields'] = $fillables->getFillable();
+        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['list'] = DTCheeses::get()->toArray();
+        return view('form', $configuration);
     }
 
     /**
@@ -114,7 +120,7 @@ class DTIngredientsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        return view('form');
 	}
 
     /**
@@ -126,7 +132,7 @@ class DTIngredientsController extends Controller {
      */
     public function adminEdit($id)
     {
-        return view('admin-single');
+        return view('form');
     }
 
     /**

@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.cheeses.index','uses' => 'DTCheesesController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.cheeses.create','uses' => 'DTCheesesController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTCheesesController@adminStore']);
+        Route::post('/create', [ 'as' => 'app.cheeses.store', 'uses' => 'DTCheesesController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.ingredients.index','uses' => 'DTIngredientsController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.ingredients.create','uses' => 'DTIngredientsController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTIngredientsController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTIngredientsController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.pads.index','uses' => 'DTPadsController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.pads.create','uses' => 'DTPadsController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTPadsController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTPadsController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.permissions.index','uses' => 'DTPermissionsController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.permissions.create','uses' => 'DTPermissionsController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTPermissionsController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTPermissionsController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.pizzas.index','uses' => 'DTPizzasController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.pizzas.create','uses' => 'DTPizzasController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTPizzasController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTPizzasController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.roles.index','uses' => 'DTRolesController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.roles.create','uses' => 'DTRolesController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTRolesController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTRolesController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', ['as' => 'app.users.index','uses' => 'DTUsersController@adminIndex']);
 
         Route::get('/create', ['as' => 'app.users.create','uses' => 'DTUsersController@adminCreate']);
-        Route::post('/create', [ 'uses' => 'DTUsersController@adminStore']);
+        Route::post('/create', [ 'uses' => 'DTUsersController@store']);
 
         Route::group(['prefix' => '{id}'], function () {
 
