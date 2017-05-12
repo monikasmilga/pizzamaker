@@ -169,7 +169,8 @@ class DTCheesesController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        DTCheeses::destroy($id);
+        return '{"success":true}';
 	}
 
 }

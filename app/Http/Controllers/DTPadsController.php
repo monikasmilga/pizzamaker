@@ -168,7 +168,8 @@ class DTPadsController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        DTPads::destroy($id);
+        return '{"success":true}';
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTCheeses;
 use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
@@ -171,7 +172,8 @@ class DTIngredientsController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        DTIngredients::destroy($id);
+        return '{"success":true}';
 	}
 
 }
