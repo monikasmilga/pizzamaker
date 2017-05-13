@@ -17,5 +17,28 @@ class DTPizzas extends CoreModel
     /**
      * @var tables fillables
      */
-    protected $fillable = ['id', 'name', 'calories', 'pads_id', 'cheeses_id', 'user_id', 'comment'];
+    protected $fillable = ['id', 'name', 'calories', 'pads_id', 'cheeses_id',
+//        'user_id',
+        'comment'];
+
+    public function connection (  )
+    {
+        return $this->belongsToMany(DTIngredients::class, 'pc_pizzas_ingredients_connections', 'pizzas_id', 'ingredients_id');
+    }
+
+    public function ingridientsConnections (  )
+    {
+        return $this->hasMany(DTPizzasIngredientsConnections::class, 'pizzas_id', 'id')
+            ->with(['ingredient']);
+    }
+
+    public function ground (  )
+    {
+        return $this->hasOne(DTPads::class, 'id', 'pads_id');
+    }
+
+    public function cheese (  )
+    {
+        return $this->hasOne(DTCheeses::class, 'id', 'cheeses_id');
+    }
 }

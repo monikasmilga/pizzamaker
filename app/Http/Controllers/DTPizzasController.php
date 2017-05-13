@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTCheeses;
+use App\models\DTIngredients;
+use App\models\DTPads;
 use App\models\DTPizzas;
 use Illuminate\Routing\Controller;
 
@@ -42,11 +45,19 @@ class DTPizzasController extends BaseAPIController {
     {
 
         $dataFromModel = new DTPizzas();
-
-
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
-//        $configuration['list'] = DTPizzas::get()->toArray();
+
+
+//        array_push($configuration['fields'], "ingredients");
+
+//        return $configuration['fields'];
+
+        $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
+        $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
+//        $configuration['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+
 
         return view('admin.createform2', $configuration);
 	}
