@@ -43,21 +43,15 @@ class DTPizzasController extends BaseAPIController {
 
     public function adminCreate()
     {
-
         $dataFromModel = new DTPizzas();
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
 
-
-//        array_push($configuration['fields'], "ingredients");
-
-//        return $configuration['fields'];
-
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
-//        $configuration['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+        $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
 
-
+        array_push($configuration['fields'], "ingredients");
 
         return view('admin.createform2', $configuration);
 	}
@@ -76,16 +70,27 @@ class DTPizzasController extends BaseAPIController {
     public function adminStore()
     {
         $data = request()->all();
-        $dataFromModel = new DTPizzas();
 
+        $dataFromModel = new DTPizzas();
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
 
+        $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
+        $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        $missingValues= 'Please enter';
         foreach($configuration['fields'] as $key=> $value) {
-            if (!isset($data[$value])) {
-                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
-                return view('admin.createform', $configuration);
+            if ($value == 'comment'){}
+
+            elseif (!isset($data[$value])) {
+                $missingValues = $missingValues . ' ' . $value . ',';
             }
+        }
+        if (strlen($missingValues) > 12){
+            $missingValues = substr($missingValues, 0, -1);
+            $configuration['error'] = ['message' => trans($missingValues)];
+            return view('admin.createform2', $configuration);
         }
 
         DTPizzas::create($data);

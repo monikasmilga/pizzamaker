@@ -24,23 +24,30 @@
 
 			@foreach($fields as $field)
 
-
-				@if(substr($field, -3) == '_id')
+				@if(isset($dropdown) and substr($field, -3) == '_id')
 					<div class="form-group">
 						{!! Form::label($field, 'Enter ' . ucfirst(substr($field, 0, -4) . ':')) !!}
 						{{Form::select($field ,$dropdown[$field], '', ['class' => 'form-control'])}}<br/>
 					</div>
 
+				@elseif(isset($checkbox[$field]))
+					{!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}<br/>
+					@foreach($checkbox[$field] as $key => $checkboxItem)
+						{{Form::checkbox($field.'[]', $key)}}
+						{{Form::label($checkboxItem, $checkboxItem)}}<br/>
+					@endforeach<br/>
 
-
-
+				@elseif($field == 'password')
+					<div class="form-group">
+						{!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}
+						{!! Form::password($field, ['class' => 'form-control'])!!}<br/>
+					</div>
 
 				@elseif($field)
 			    	<div class="form-group">
 				        {!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}
 				        {!! Form::text($field, '', ['class' => 'form-control'])!!}<br/>
 			        </div>
-
 			    @endif
 
 			@endforeach
