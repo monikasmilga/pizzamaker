@@ -1,45 +1,91 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTPizzas;
 use Illuminate\Routing\Controller;
 
 class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pizzas
+	 * GET /ingredients
 	 *
 	 * @return Response
 	 */
-	public function index()
+
+    public function index()
+    {
+
+	}
+
+	public function adminIndex()
 	{
-		//
+        $dataFromModel = new DTPizzas();
+
+	    $configuration['list'] = DTPizzas::get()->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+		return view('admin.list', $configuration);
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pizzas/create
+	 * GET /ingredients/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+
+	}
+
+    public function adminCreate()
+    {
+
+        $dataFromModel = new DTPizzas();
+
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+        $configuration['list'] = DTPizzas::get()->toArray();
+
+        return view('admin.createform', $configuration);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pizzas
+	 * POST /ingredients
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+
+	}
+
+    public function adminStore()
+    {
+        $data = request()->all();
+        $dataFromModel = new DTPizzas();
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        foreach($configuration['fields'] as $key=> $value) {
+            if (!isset($data[$value])) {
+                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
+                return view('admin.createform', $configuration);
+            }
+        }
+
+        DTPizzas::create($data);
+        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        return view('admin.createform',  $configuration);
+
 	}
 
 	/**
 	 * Display the specified resource.
-	 * GET /pizzas/{id}
+	 * GET /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -49,33 +95,56 @@ class DTPizzasController extends BaseAPIController {
 		//
 	}
 
+    public function adminShow($id)
+    {
+        $dataFromModel = new DTPizzas();
+
+        $configuration['record'] = DTPizzas::find($id)->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+
+        return view('admin.single', $configuration);
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pizzas/{id}/edit
+	 * GET /ingredients/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		//
+		
+	}
+
+	public function adminEdit($id) 
+	{
+
+		return view('admin.editform');
+
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pizzas/{id}
+	 * PUT /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update($id)
 	{
-		//
+		
+	}
+
+	public function adminUpdate($id) 
+	{
+
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pizzas/{id}
+	 * DELETE /ingredients/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -83,6 +152,16 @@ class DTPizzasController extends BaseAPIController {
 	public function destroy($id)
 	{
 		//
+	}
+
+    public function adminDestroy($id)
+    {
+
+        if(DTPizzas::destroy($id)) {
+            return '{"success":true}';
+        }
+
+
 	}
 
 }

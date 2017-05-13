@@ -1,45 +1,91 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTUsers;
 use Illuminate\Routing\Controller;
 
 class DTUsersController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /dtusers
+	 * GET /users
 	 *
 	 * @return Response
 	 */
-	public function index()
+
+    public function index()
+    {
+
+	}
+
+	public function adminIndex()
 	{
-		//
+        $dataFromModel = new DTUsers();
+
+	    $configuration['list'] = DTUsers::get()->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+		return view('admin.list', $configuration);
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /dtusers/create
+	 * GET /users/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+
+	}
+
+    public function adminCreate()
+    {
+
+        $dataFromModel = new DTUsers();
+
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+        $configuration['list'] = DTUsers::get()->toArray();
+
+        return view('admin.createform', $configuration);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /dtusers
+	 * POST /users
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+
+	}
+
+    public function adminStore()
+    {
+        $data = request()->all();
+        $dataFromModel = new DTUsers();
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        foreach($configuration['fields'] as $key=> $value) {
+            if (!isset($data[$value])) {
+                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
+                return view('admin.createform', $configuration);
+            }
+        }
+
+        DTUsers::create($data);
+        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        return view('admin.createform',  $configuration);
+
 	}
 
 	/**
 	 * Display the specified resource.
-	 * GET /dtusers/{id}
+	 * GET /users/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -49,33 +95,56 @@ class DTUsersController extends Controller {
 		//
 	}
 
+    public function adminShow($id)
+    {
+        $dataFromModel = new DTUsers();
+
+        $configuration['record'] = DTUsers::find($id)->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+
+        return view('admin.single', $configuration);
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /dtusers/{id}/edit
+	 * GET /users/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		//
+		
+	}
+
+	public function adminEdit($id) 
+	{
+
+		return view('admin.editform');
+
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /dtusers/{id}
+	 * PUT /users/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update($id)
 	{
-		//
+		
+	}
+
+	public function adminUpdate($id) 
+	{
+
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /dtusers/{id}
+	 * DELETE /users/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -85,4 +154,13 @@ class DTUsersController extends Controller {
 		//
 	}
 
+    public function adminDestroy($id)
+    {
+
+        if(DTUsers::destroy($id)) {
+            return '{"success":true}';
+        }
+
+
+	}
 }
