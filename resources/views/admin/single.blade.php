@@ -24,9 +24,9 @@
             </tbody>
         </table>
 
-        <a class="btn btn-sm btn-primary" href="{{route('app.ingredients.index')}}">Back</a>
-        <a class="btn btn-success btn-sm" href="{{route('app.ingredients.index')}}">Edit</a>
-        <a onclick="deleteItem('{{route('app.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" href="{{route('app.ingredients.index')}}">Delete</a>
+        <a class="btn btn-sm btn-primary" href="{{route('app.' . $tableName . '.index')}}">Back</a>
+        <a class="btn btn-success btn-sm" href="{{route('app.' . $tableName . '.edit', $record['id'])}}">Edit</a>
+        <a onclick="deleteItem('{{route('app.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" href="{{route('app.' . $tableName . '.index')}}">Delete</a>
 
     </div>
 
