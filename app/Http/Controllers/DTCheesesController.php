@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use App\models\DTCheeses;
-use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
 class DTCheesesController extends Controller {
@@ -20,10 +19,10 @@ class DTCheesesController extends Controller {
 
     public function adminIndex()
     {
-        $fillables = new DTCheeses();
+        $dataFromModel = new DTCheeses();
 
         $configuration['list'] = DTCheeses::get()->toArray();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
         return view('admin.list', $configuration);
     }
@@ -42,11 +41,11 @@ class DTCheesesController extends Controller {
     public function adminCreate()
     {
 
-        $fillables = new DTCheeses();
+        $dataFromModel = new DTCheeses();
 
 
-        $configuration['fields'] = $fillables->getFillable();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
         $configuration['list'] = DTCheeses::get()->toArray();
 
         return view('admin.createform', $configuration);
@@ -66,10 +65,21 @@ class DTCheesesController extends Controller {
     public function adminStore()
     {
         $data = request()->all();
+        $dataFromModel = new DTCheeses();
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        foreach($configuration['fields'] as $key=> $value) {
+            if (!isset($data[$value])) {
+                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
+                return view('admin.createform', $configuration);
+            }
+        }
 
         DTCheeses::create($data);
-
-        return redirect()->back();
+        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        return view('admin.createform',  $configuration);
 
     }
 
@@ -87,10 +97,10 @@ class DTCheesesController extends Controller {
 
     public function adminShow($id)
     {
-        $fillables = new DTCheeses();
+        $dataFromModel = new DTCheeses();
 
         $configuration['record'] = DTCheeses::find($id)->toArray();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
 
         return view('admin.single', $configuration);
@@ -105,7 +115,14 @@ class DTCheesesController extends Controller {
      */
     public function edit($id)
     {
-        //
+        
+    }
+
+    public function adminEdit($id) 
+    {
+
+        return view('admin.editform');
+
     }
 
     /**
@@ -117,7 +134,12 @@ class DTCheesesController extends Controller {
      */
     public function update($id)
     {
-        //
+        
+    }
+
+    public function adminUpdate($id) 
+    {
+
     }
 
     /**

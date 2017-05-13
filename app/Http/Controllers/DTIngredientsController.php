@@ -21,10 +21,10 @@ class DTIngredientsController extends Controller {
 
 	public function adminIndex()
 	{
-        $fillables = new DTIngredients();
+        $dataFromModel = new DTIngredients();
 
 	    $configuration['list'] = DTIngredients::get()->toArray();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
 		return view('admin.list', $configuration);
 	}
@@ -43,11 +43,11 @@ class DTIngredientsController extends Controller {
     public function adminCreate()
     {
 
-        $fillables = new DTIngredients();
+        $dataFromModel = new DTIngredients();
 
 
-        $configuration['fields'] = $fillables->getFillable();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
         $configuration['list'] = DTIngredients::get()->toArray();
 
         return view('admin.createform', $configuration);
@@ -67,10 +67,21 @@ class DTIngredientsController extends Controller {
     public function adminStore()
     {
         $data = request()->all();
+        $dataFromModel = new DTIngredients();
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        foreach($configuration['fields'] as $key=> $value) {
+            if (!isset($data[$value])) {
+                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
+                return view('admin.createform', $configuration);
+            }
+        }
 
         DTIngredients::create($data);
-
-        return redirect()->back();
+        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        return view('admin.createform',  $configuration);
 
 	}
 
@@ -88,10 +99,10 @@ class DTIngredientsController extends Controller {
 
     public function adminShow($id)
     {
-        $fillables = new DTIngredients();
+        $dataFromModel = new DTIngredients();
 
         $configuration['record'] = DTIngredients::find($id)->toArray();
-        $configuration['tableName'] = $fillables->getTableName();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
 
         return view('admin.single', $configuration);
@@ -106,7 +117,14 @@ class DTIngredientsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		
+	}
+
+	public function adminEdit($id) 
+	{
+
+		return view('admin.editform');
+
 	}
 
 	/**
@@ -118,7 +136,12 @@ class DTIngredientsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		
+	}
+
+	public function adminUpdate($id) 
+	{
+
 	}
 
 	/**
