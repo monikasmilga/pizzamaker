@@ -100,7 +100,21 @@ class DTPizzasController extends BaseAPIController {
             return view('admin.createform2', $configuration);
         }
 
-        DTPizzas::create($data);
+
+
+
+
+        $record = DTPizzas::create($data);
+
+//        $record->connection()->sync($data['ingredients']);
+
+
+
+
+
+
+
+
         $configuration['comment'] = ['message' => trans(substr($configuration['tableName'], 0, -1) . ' added successfully')];
         return view('admin.createform',  $configuration);
 
