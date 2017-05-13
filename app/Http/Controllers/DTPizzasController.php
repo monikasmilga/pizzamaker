@@ -46,9 +46,9 @@ class DTPizzasController extends BaseAPIController {
 
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
-        $configuration['list'] = DTPizzas::get()->toArray();
+//        $configuration['list'] = DTPizzas::get()->toArray();
 
-        return view('admin.createform', $configuration);
+        return view('admin.createform2', $configuration);
 	}
 
 	/**
