@@ -50,7 +50,6 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
-
         array_push($configuration['fields'], "ingredients");
 
         return view('admin.createform2', $configuration);
@@ -78,23 +77,31 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+        array_push($configuration['fields'], "ingredients");
 
-        $missingValues= 'Please enter';
+        $missingValuesNot= '';
+        $missingValues= '';
         foreach($configuration['fields'] as $key=> $value) {
             if ($value == 'comment'){}
 
             elseif (!isset($data[$value])) {
                 $missingValues = $missingValues . ' ' . $value . ',';
             }
+
+            elseif ($value == 'ingredients' and sizeOf($data[$value]) > 3)
+            {
+                $configuration['error'] = ['message' => trans("Please add up to 3 ingredients")];
+                return view('admin.createform2', $configuration);
+            }
         }
-        if (strlen($missingValues) > 12){
-            $missingValues = substr($missingValues, 0, -1);
-            $configuration['error'] = ['message' => trans($missingValues)];
+        if ($missingValues  != $missingValuesNot){
+            $missingValues = substr($missingValues, 1, -1);
+            $configuration['error'] = ['message' => trans('Please enter ' . $missingValues)];
             return view('admin.createform2', $configuration);
         }
 
         DTPizzas::create($data);
-        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        $configuration['comment'] = ['message' => trans(substr($configuration['tableName'], 0, -1) . ' added successfully')];
         return view('admin.createform',  $configuration);
 
 	}
