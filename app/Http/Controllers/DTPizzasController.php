@@ -5,6 +5,7 @@ use App\models\DTIngredients;
 use App\models\DTPads;
 use App\models\DTPizzas;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class DTPizzasController extends BaseAPIController {
 
@@ -50,7 +51,10 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
+        array_push($configuration['fields'], "comment");
 
         return view('admin.createform2', $configuration);
 	}
@@ -77,7 +81,10 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
+        array_push($configuration['fields'], "comment");
 
         $missingValuesNot= '';
         $missingValues= '';
@@ -100,20 +107,21 @@ class DTPizzasController extends BaseAPIController {
             return view('admin.createform2', $configuration);
         }
 
+        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
 
+        $ingredients_calories = 0;
+        foreach ($data['ingredients'] as $ingredient)
+        {
+            $ingredient_calories = DB::table('dt_ingredients')->where('id', '=', $ingredient)->select('calories')->get()->pluck('calories')->toArray();
+            $ingredients_calories+= array_sum($ingredient_calories);
+        }
 
-
+        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
 
         $record = DTPizzas::create($data);
 
-//        $record->connection()->sync($data['ingredients']);
-
-
-
-
-
-
-
+        $record->connection()->sync($data['ingredients']);
 
         $configuration['comment'] = ['message' => trans(substr($configuration['tableName'], 0, -1) . ' added successfully')];
         return view('admin.createform',  $configuration);
