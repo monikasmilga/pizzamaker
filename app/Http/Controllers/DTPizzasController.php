@@ -165,8 +165,21 @@ class DTPizzasController extends BaseAPIController {
 
 	public function adminEdit($id) 
 	{
+        $dataFromModel = new DTPizzas();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
-		return view('admin.editform');
+        $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
+        $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        $configuration['record'] = DTPizzas::find($id)->toArray();
+
+        unset($configuration['fields'][6]);
+        array_push($configuration['fields'], "ingredients");
+        array_push($configuration['fields'], "comment");
+
+        return view('admin.editform2', $configuration);
 
 	}
 

@@ -30,12 +30,12 @@
 
 				@elseif(isset($dropdown) and substr($field, -3) == '_id')
 					<div class="form-group">
-						{!! Form::label($field, 'Enter ' . ucfirst(substr($field, 0, -4) . ':')) !!}
+						{!! Form::label($field, 'Choose ' . ucfirst(substr($field, 0, -4) . ':')) !!}
 						{{Form::select($field ,$dropdown[$field], '', ['class' => 'form-control'])}}<br/>
 					</div>
 
 				@elseif(isset($checkbox[$field]))
-					{!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}<br/>
+					{!! Form::label($field, 'Pick ' . ucfirst($field . ':')) !!}<br/>
 					@foreach($checkbox[$field] as $key => $checkboxItem)
 						{{Form::checkbox($field.'[]', $key)}}
 						{{Form::label($checkboxItem, $checkboxItem)}}<br/>
