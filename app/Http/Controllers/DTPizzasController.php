@@ -11,7 +11,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /ingredients
+	 * GET /pizzas
 	 *
 	 * @return Response
 	 */
@@ -33,7 +33,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /ingredients/create
+	 * GET /pizzas/create
 	 *
 	 * @return Response
 	 */
@@ -61,7 +61,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /ingredients
+	 * POST /pizzas
 	 *
 	 * @return Response
 	 */
@@ -98,13 +98,13 @@ class DTPizzasController extends BaseAPIController {
             elseif ($value == 'ingredients' and sizeOf($data[$value]) > 3)
             {
                 $configuration['error'] = ['message' => trans("Please add up to 3 ingredients")];
-                return view('admin.createform2', $configuration);
+                return view('admin.createform', $configuration);
             }
         }
         if ($missingValues  != $missingValuesNot){
             $missingValues = substr($missingValues, 1, -1);
             $configuration['error'] = ['message' => trans('Please enter ' . $missingValues)];
-            return view('admin.createform2', $configuration);
+            return view('admin.createform', $configuration);
         }
 
         $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
@@ -130,7 +130,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /ingredients/{id}
+	 * GET /pizzas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -153,7 +153,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /ingredients/{id}/edit
+	 * GET /pizzas/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -179,13 +179,13 @@ class DTPizzasController extends BaseAPIController {
         array_push($configuration['fields'], "ingredients");
         array_push($configuration['fields'], "comment");
 
-        return view('admin.editform2', $configuration);
+        return view('admin.editform', $configuration);
 
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /ingredients/{id}
+	 * PUT /pizzas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -202,7 +202,7 @@ class DTPizzasController extends BaseAPIController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /ingredients/{id}
+	 * DELETE /pizzas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
