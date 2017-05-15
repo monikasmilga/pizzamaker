@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTIngredients;
 use Illuminate\Routing\Controller;
 
 class DTIngredientsController extends Controller {
+
+
 
 	/**
 	 * Display a listing of the resource.
@@ -10,9 +13,26 @@ class DTIngredientsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+
+    public function index()
+    {
+
+	}
+
+	public function adminIndex()
 	{
-		//
+        $dataFromModel = new DTIngredients();
+
+	    $configuration['list'] = DTIngredients::get()->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        if($configuration['list'] == [])
+        {
+            $configuration['error'] = ['message' => trans("Create some " . $configuration['tableName'] . ", then go to list")];
+            return view('admin.list', $configuration);
+        }
+
+		return view('admin.list', $configuration);
 	}
 
 	/**
@@ -23,7 +43,20 @@ class DTIngredientsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
+	}
+
+    public function adminCreate()
+    {
+
+        $dataFromModel = new DTIngredients();
+
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+        $configuration['list'] = DTIngredients::get()->toArray();
+
+        return view('admin.createform', $configuration);
 	}
 
 	/**
@@ -34,7 +67,28 @@ class DTIngredientsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+
+	}
+
+    public function adminStore()
+    {
+        $data = request()->all();
+        $dataFromModel = new DTIngredients();
+
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        foreach($configuration['fields'] as $key=> $value) {
+            if (!isset($data[$value])) {
+                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
+                return view('admin.createform', $configuration);
+            }
+        }
+
+        DTIngredients::create($data);
+        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        return view('admin.createform',  $configuration);
+
 	}
 
 	/**
@@ -49,6 +103,17 @@ class DTIngredientsController extends Controller {
 		//
 	}
 
+    public function adminShow($id)
+    {
+        $dataFromModel = new DTIngredients();
+
+        $configuration['record'] = DTIngredients::find($id)->toArray();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+
+        return view('admin.single', $configuration);
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 * GET /ingredients/{id}/edit
@@ -58,7 +123,14 @@ class DTIngredientsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		
+	}
+
+	public function adminEdit($id) 
+	{
+
+		return view('admin.editform');
+
 	}
 
 	/**
@@ -70,7 +142,12 @@ class DTIngredientsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		
+	}
+
+	public function adminUpdate($id) 
+	{
+
 	}
 
 	/**
@@ -83,6 +160,16 @@ class DTIngredientsController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+    public function adminDestroy($id)
+    {
+
+        if(DTIngredients::destroy($id)) {
+            return '{"success":true}';
+        }
+
+
 	}
 
 }

@@ -12,7 +12,7 @@ class DTUsers extends CoreModel
     /**
      * @var table name
      */
-    protected $table = 'users';
+    protected $table = 'dt_users';
 
     /**
      * @var tables fillables
