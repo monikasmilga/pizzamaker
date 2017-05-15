@@ -56,7 +56,7 @@ class DTPizzasController extends BaseAPIController {
         array_push($configuration['fields'], "ingredients");
         array_push($configuration['fields'], "comment");
 
-        return view('admin.createform2', $configuration);
+        return view('admin.createform', $configuration);
 	}
 
 	/**
@@ -90,6 +90,8 @@ class DTPizzasController extends BaseAPIController {
         $missingValues= '';
         foreach($configuration['fields'] as $key=> $value) {
             if ($value == 'comment'){}
+            elseif ($value == 'calories'){}
+            elseif ($value == 'user_id'){}
 
             elseif (!isset($data[$value])) {
                 $missingValues = $missingValues . ' ' . $value . ',';
