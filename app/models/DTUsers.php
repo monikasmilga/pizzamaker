@@ -1,14 +1,17 @@
 <?php
 
 namespace App\models;
-
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class DTUsers
  * @package App\models
  */
-class DTUsers extends CoreModel
+class DTUsers extends Authenticatable
 {
+    use Notifiable;
+
     /**
      * @var table name
      */
@@ -17,5 +20,5 @@ class DTUsers extends CoreModel
     /**
      * @var tables fillables
      */
-    protected $fillable = ['id', 'name', 'email', 'password'];
+    protected $fillable = ['id', 'name', 'email', 'phone', 'password'];
 }
