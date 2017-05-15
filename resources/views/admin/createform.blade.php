@@ -58,7 +58,7 @@
 
 
 			{!! Form::submit('Create' , ['class' => 'btn btn-success']) !!}
-			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">Back to list</a>
+			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">{{ucfirst($tableName)}} list</a>
 
 			{!! Form::close() !!}
 		</div>
