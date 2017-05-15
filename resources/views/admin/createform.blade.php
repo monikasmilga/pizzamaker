@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="col-md-12">
 
-			<h3>Create new: {{$tableName}}</h3>
+			<h3>Create new: {{substr($tableName, 0, -1)}}</h3>
 
 			@if(isset($error))
 				<div class="alert alert-danger">

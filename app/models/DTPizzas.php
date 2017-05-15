@@ -24,7 +24,7 @@ class DTPizzas extends CoreModel
         return $this->belongsToMany(DTIngredients::class, 'dt_pizzas_ingredients_connections', 'pizzas_id', 'ingredients_id');
     }
 
-    public function ingridientsConnections (  )
+    public function pizzasConnections (  )
     {
         return $this->hasMany(DTPizzasIngredientsConnections::class, 'pizzas_id', 'id')
             ->with(['ingredient']);
