@@ -28,11 +28,11 @@ class DTPizzasController extends BaseAPIController {
 	    $configuration['list'] = DTPizzas::get()->toArray();
         $configuration['tableName'] = $dataFromModel->getTableName();
 
-//        if(DTPizzas::get()->toArray() == null)
-//        {
-//            $configuration['error'] = ['message' => trans("Please create pizza, then go to list")];
-//            return view('admin.list', $configuration);
-//        }
+        if($configuration['list'] == [])
+        {
+            $configuration['error'] = ['message' => trans("Create some " . $configuration['tableName'] . ", then go to list")];
+            return view('admin.list', $configuration);
+        }
 
 		return view('admin.list', $configuration);
 	}

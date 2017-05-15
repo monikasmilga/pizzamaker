@@ -24,6 +24,12 @@ class DTPermissionsController extends Controller {
 	    $configuration['list'] = DTPermissions::get()->toArray();
         $configuration['tableName'] = $dataFromModel->getTableName();
 
+        if($configuration['list'] == [])
+        {
+            $configuration['error'] = ['message' => trans("Create some " . $configuration['tableName'] . ", then go to list")];
+            return view('admin.list', $configuration);
+        }
+
 		return view('admin.list', $configuration);
 	}
 
