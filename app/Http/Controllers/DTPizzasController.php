@@ -260,7 +260,7 @@ class DTPizzasController extends BaseAPIController {
         }
 
         $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
-        
+
         $record = DTPizzas::find($id);
         $data = request()->all();
         $record->update($data);
