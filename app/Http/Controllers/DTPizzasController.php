@@ -182,6 +182,11 @@ class DTPizzasController extends BaseAPIController {
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
 
         $configuration['record'] = DTPizzas::find($id)->toArray();
+        $configuration['pizza'] = DTPizzas::find($id);
+
+        $configuration['pizzas_ingredients']= $configuration['pizza']->pizzasConnections->pluck('ingredients_id')->toArray();
+
+//        dd($configuration['record']);
 
         unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
@@ -200,13 +205,72 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function update($id)
 	{
-		
-	}
+
+    }
 
 	public function adminUpdate($id) 
 	{
+//        return $id;
 
-	}
+        $data = request()->all();
+
+        $dataFromModel = new DTPizzas();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
+
+        $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
+        $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][6]);
+        array_push($configuration['fields'], "ingredients");
+        array_push($configuration['fields'], "comment");
+
+        $missingValuesNot= '';
+        $missingValues= '';
+        foreach($configuration['fields'] as $key=> $value) {
+            if ($value == 'comment'){}
+            elseif ($value == 'calories'){}
+            elseif ($value == 'user_id'){}
+
+            elseif (!isset($data[$value])) {
+                $missingValues = $missingValues . ' ' . $value . ',';
+            }
+
+            elseif ($value == 'ingredients' and sizeOf($data[$value]) > 3)
+            {
+                $configuration['error'] = ['message' => trans("Please add up to 3 ingredients")];
+                return view('admin.createform', $configuration);
+            }
+        }
+        if ($missingValues  != $missingValuesNot){
+            $missingValues = substr($missingValues, 1, -1);
+            $configuration['error'] = ['message' => trans('Please enter ' . $missingValues)];
+            return view('admin.createform', $configuration);
+        }
+
+        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
+
+        $ingredients_calories = 0;
+        foreach ($data['ingredients'] as $ingredient)
+        {
+            $ingredient_calories = DB::table('dt_ingredients')->where('id', '=', $ingredient)->select('calories')->get()->pluck('calories')->toArray();
+            $ingredients_calories+= array_sum($ingredient_calories);
+        }
+
+        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
+        
+        $record = DTPizzas::find($id);
+        $data = request()->all();
+        $record->update($data);
+
+        $record->connection()->sync($data['ingredients']);
+
+        $configuration['comment'] = ['message' => trans(substr($configuration['tableName'], 0, -1) . ' update successfull')];
+        return view('admin.createform',  $configuration);
+
+    }
 
 	/**
 	 * Remove the specified resource from storage.

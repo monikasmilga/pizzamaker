@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.pizzas.edit', 'uses' => 'DTPizzasController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTPizzasController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.pizzas.update', 'uses' => 'DTPizzasController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.pizzas.show', 'uses' => 'DTPizzasController@adminShow']);
             Route::delete('/', ['as' => 'app.pizzas.delete', 'uses' => 'DTPizzasController@adminDestroy']);

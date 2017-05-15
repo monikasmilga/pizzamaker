@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="col-md-12">
 
-			<h3>Create new: {{$tableName}}</h3>
+			<h3>Create new: {{substr($tableName, 0, -1)}}</h3>
 
 			@if(isset($error))
 				<div class="alert alert-danger">
@@ -58,7 +58,7 @@
 
 
 			{!! Form::submit('Create' , ['class' => 'btn btn-success']) !!}
-			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">Back to list</a>
+			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">{{ucfirst($tableName)}} list</a>
 
 			{!! Form::close() !!}
 		</div>
