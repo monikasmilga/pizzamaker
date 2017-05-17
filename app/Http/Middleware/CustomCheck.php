@@ -17,10 +17,11 @@ class CustomCheck
      */
     public function handle($request, Closure $next, $guard = null)
     {
-
         if(in_array("member", auth()->user()->rolesConnections->pluck('roles_id')->toArray()))
             return $next($request);
 
         return abort(403, "no pizzas!");
     }
+
+
 }

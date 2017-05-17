@@ -3,33 +3,41 @@
 @section('content')
 
     <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                @foreach($list[0] as $key => $value)
-                    <th>{{$key}}</th>
-                @endforeach
-                <th>View</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @foreach($list as $key => $record)
+        @if(isset($error))
+            <div class="alert alert-danger">
+                <strong>{{ $error['message'] }}</strong>
+            </div>
+        @endif
+        @if(!isset($error))
+            <table class="table">
+                <thead>
                 <tr>
-                    @foreach($record as $key => $value)
-                        <td>{{$value}}</td>
-
+                    @foreach($list[0] as $key => $value)
+                        <th>{{$key}}</th>
                     @endforeach
-                    <td><a class="btn btn-primary btn-sm" href="{{route($routeView, $record['id'])}}">View</a></td>
-                    <td><a class="btn btn-success btn-sm" href="{{route($routeEdit, $record['id'])}}">Edit</a></td>
-                    <td><a onclick="deleteItem('{{route($routeDelete, $record['id'])}}')" class="btn btn-danger btn-sm" href="">Delete</a></td>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
-            @endforeach
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                @foreach($list as $key => $record)
+                    <tr>
+                        @foreach($record as $key => $value)
+                            <td>{{$value}}</td>
+
+                        @endforeach
+                        <td><a class="btn btn-primary btn-sm" href="{{route('front-end.' . $tableName . '.show', $record['id'])}}">View</a></td>
+                        <td><a class="btn btn-success btn-sm" href="{{route('front-end.' . $tableName . '.edit', $record['id'])}}">Edit</a></td>
+                        <td><a id="del" onclick="deleteItem('{{route('front-end.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" >Delete</a></td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+        @endif
+        <a style="margin-bottom: 50px" class="btn btn-primary btn-sm" href="{{ route('front-end.' . $tableName . '.create') }}">Create new {{substr($tableName, 0, -1)}}</a>
     </div>
 
 
@@ -58,11 +66,11 @@
                 data: {},
                 dataType: 'json',
                 success: function () {
-                    alert('DELETED')
+                    $("#del").parent().parent().remove();
 
                 },
                 error: function () {
-                    alert('Error');
+                    alert('error');
                 }
 
             });

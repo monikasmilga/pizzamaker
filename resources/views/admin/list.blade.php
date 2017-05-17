@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
     <div class="container">
         @if(isset($error))
             <div class="alert alert-danger">
@@ -58,9 +56,6 @@
 
         function deleteItem(route) {
 
-
-
-
             $.ajax({
 
                 url: route,
@@ -68,7 +63,8 @@
                 data: {},
                 dataType: 'json',
                 success: function () {
-                    $("#del").parent().parent().remove();
+                    el.remove();
+//                    $("#del").parent().parent().remove();
 
                 },
                 error: function () {

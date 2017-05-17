@@ -20,7 +20,7 @@ class CreateAdministrator extends Command
 
     public function handle()
     {
-        if(!DTUsers::get()->toArray() == [])
+        if(DTUsers::get()->toArray() == [])
         {
             $this->comment("Creating admin user");
 
