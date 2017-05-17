@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/', ['as' => 'app.pizzas.index','uses' => 'DTPizzasController@adminIndex']);
 
-        Route::get('/create', ['as' => 'app.pizzas.create','uses' => 'DTPizzasController@adminCreate']);
+        Route::get('/create', ['middleware' => ['auth', 'custom-check'], 'as' => 'app.pizzas.create','uses' => 'DTPizzasController@adminCreate']);
         Route::post('/create', ['as' => 'app.pizzas.store', 'uses' => 'DTPizzasController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
