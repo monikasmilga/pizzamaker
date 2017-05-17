@@ -21,4 +21,17 @@ class DTUsers extends Authenticatable
      * @var tables fillables
      */
     protected $fillable = ['id', 'name', 'email', 'phone', 'password'];
+
+    public function getFillable() {
+
+        unset($this->fillable[0]);
+        return $this->fillable;
+
+    }
+
+    public function getTableName()
+    {
+        $tableName = substr($this->table, 3);
+        return $tableName;
+    }
 }
