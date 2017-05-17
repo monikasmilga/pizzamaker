@@ -74,5 +74,7 @@ class RegisterController extends Controller
         ]);
 
         $record -> connection()-> sync(['member', 'user']);
+
+        return $record;
     }
 }
