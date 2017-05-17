@@ -27,7 +27,7 @@ class CreateAdministrator extends Command
             'name' => $name = $this->ask('Please provide name'),
             'email' => $email = $this->ask('Please provide email'),
             'phone' => $phone = $this->ask('Please provide phone'),
-            'password' => $password = $this->secret('Please provide password'),
+            'password' => bcrypt($password = $this->secret('Please provide password')),
         ]);
 
         $record -> connection()-> sync('super-admin');
