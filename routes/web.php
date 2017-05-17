@@ -153,7 +153,7 @@ Route::group(['prefix' => 'pizzas'], function () {
 
     Route::get('/', ['as' => 'front-end.pizzas.index','uses' => 'DTPizzasController@index']);
 
-    Route::get('/create', ['as' => 'front-end.pizzas.create','uses' => 'DTPizzasController@create']);
+    Route::get('/create', ['middleware' => ['auth', 'user-restriction'], 'as' => 'front-end.pizzas.create','uses' => 'DTPizzasController@create']);
     Route::post('/create', [ 'uses' => 'DTPizzasController@store']);
 
     Route::group(['prefix' => '{id}'], function () {

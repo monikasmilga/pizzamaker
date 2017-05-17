@@ -15,9 +15,9 @@ class VerifyAccess
      */
     public function handle($request, Closure $next)
     {
- /*       if(auth()->user()->connection()-> )
+       if(in_array('member', auth()->user()->connection->pluck('roles_id')->toArray()))
             return $next($request);
 
-        abort (403, 'Access denied');*/
+        abort (403, 'Access denied');
     }
 }
