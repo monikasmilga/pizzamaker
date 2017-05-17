@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTRoles;
 use App\models\DTUsers;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class DTUsersController extends Controller {
 
@@ -46,16 +49,22 @@ class DTUsersController extends Controller {
 
     public function adminCreate()
     {
-
         $dataFromModel = new DTUsers();
-
 
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
-        $configuration['list'] = DTUsers::get()->toArray();
+        $configuration['list'] = DTRoles::get()->toArray();
+
+        $configuration['checkbox']['roles']=DTRoles::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][4]);
+        array_push($configuration['fields'], "roles");
+        array_push($configuration['fields'], "password");
+
+//        dd ($configuration);
 
         return view('admin.createform', $configuration);
-	}
+    }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -71,23 +80,43 @@ class DTUsersController extends Controller {
     public function adminStore()
     {
         $data = request()->all();
-        $dataFromModel = new DTUsers();
 
+        $dataFromModel = new DTUsers();
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
 
+        $configuration['checkbox']['roles']=DTRoles::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][4]);
+        array_push($configuration['fields'], "roles");
+        array_push($configuration['fields'], "password");
+
+        $missingValuesNot= '';
+        $missingValues= '';
         foreach($configuration['fields'] as $key=> $value) {
+
             if (!isset($data[$value])) {
-                $configuration['error'] = ['message' => trans('Please enter ' . $value)];
-                return view('admin.createform', $configuration);
+                $missingValues = $missingValues . ' ' . $value . ',';
             }
         }
+        if ($missingValues  != $missingValuesNot){
+            $missingValues = substr($missingValues, 1, -1);
+            $configuration['error'] = ['message' => trans('Please enter ' . $missingValues)];
+            return view('admin.createform', $configuration);
+        }
 
-        DTUsers::create($data);
-        $configuration['comment'] = ['message' => trans('Record added successfully')];
+        $record = DTUsers::create($data);
+
+        dd($data['roles']);
+
+        $record->connection()->sync($data['roles']);
+
+        $configuration['comment'] = ['message' => trans(substr($configuration['tableName'], 0, -1) . ' added successfully')];
         return view('admin.createform',  $configuration);
 
-	}
+    }
+
+
 
 	/**
 	 * Display the specified resource.
