@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.cheeses.edit', 'uses' => 'DTCheesesController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTCheesesController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.cheeses.update', 'uses' => 'DTCheesesController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.cheeses.show', 'uses' => 'DTCheesesController@adminShow']);
             Route::delete('/', ['as' => 'app.cheeses.delete', 'uses' => 'DTCheesesController@adminDestroy']);
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.ingredients.edit', 'uses' => 'DTIngredientsController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTIngredientsController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.ingredients.update', 'uses' => 'DTIngredientsController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.ingredients.show', 'uses' => 'DTIngredientsController@adminShow']);
             Route::delete('/', ['as' => 'app.ingredients.delete', 'uses' => 'DTIngredientsController@adminDestroy']);
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.pads.edit', 'uses' => 'DTPadsController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTPadsController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.pads.update', 'uses' => 'DTPadsController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.pads.show', 'uses' => 'DTPadsController@adminShow']);
             Route::delete('/', ['as' => 'app.pads.delete', 'uses' => 'DTPadsController@adminDestroy']);
@@ -84,7 +84,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.permissions.edit', 'uses' => 'DTPermissionsController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTPermissionsController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.permissions.update', 'uses' => 'DTPermissionsController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.permissions.show', 'uses' => 'DTPermissionsController@adminShow']);
             Route::delete('/', ['as' => 'app.permissions.delete', 'uses' => 'DTPermissionsController@adminDestroy']);
@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.pizzas.edit', 'uses' => 'DTPizzasController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTPizzasController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.pizzas.update', 'uses' => 'DTPizzasController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.pizzas.show', 'uses' => 'DTPizzasController@adminShow']);
             Route::delete('/', ['as' => 'app.pizzas.delete', 'uses' => 'DTPizzasController@adminDestroy']);
@@ -120,7 +120,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.roles.edit', 'uses' => 'DTRolesController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTRolesController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.roles.update', 'uses' => 'DTRolesController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.roles.show', 'uses' => 'DTRolesController@adminShow']);
             Route::delete('/', ['as' => 'app.roles.delete', 'uses' => 'DTRolesController@adminDestroy']);
@@ -138,7 +138,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
 
             Route::get('/edit', ['as' => 'app.users.edit', 'uses' => 'DTUsersController@adminEdit']);
-            Route::post('/edit', ['uses' => 'DTUsersController@adminUpdate']);
+            Route::post('/edit', ['as' => 'app.users.update', 'uses' => 'DTUsersController@adminUpdate']);
 
             Route::get('/', ['as' => 'app.users.show', 'uses' => 'DTUsersController@adminShow']);
             Route::delete('/', ['as' => 'app.users.delete', 'uses' => 'DTUsersController@adminDestroy']);
@@ -159,10 +159,16 @@ Route::group(['prefix' => 'pizzas'], function () {
     Route::group(['prefix' => '{id}'], function () {
 
         Route::get('/edit', ['as' => 'front-end.pizzas.edit', 'uses' => 'DTPizzasController@edit']);
-        Route::post('/edit', ['uses' => 'DTPizzasController@update']);
+        Route::post('/edit', ['as' => 'front-end.pizzas.update', 'uses' => 'DTPizzasController@update']);
 
         Route::get('/', ['uses' => 'DTPizzasController@show']);
         Route::delete('/', ['as' => 'front-end.pizzas.delete', 'uses' => 'DTPizzasController@destroy']);
 
     });
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

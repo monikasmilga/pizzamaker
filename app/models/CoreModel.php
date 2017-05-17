@@ -46,7 +46,7 @@ class CoreModel extends Model
 
     public function getTableName()
     {
-        $tableName = substr($this->table, 3, 20);
+        $tableName = substr($this->table, 3);
         return $tableName;
     }
 }

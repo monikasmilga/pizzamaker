@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\models\DTUsers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Ramsey\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -21,6 +23,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -62,7 +65,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return DTUsers::create([
+            'id' => Uuid::uuid4(),
+            'phone' => '861622255',
+            'phone' => $data['phone'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),

@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="col-md-12">
 
-			<h3>Create new: {{$tableName}}</h3>
+			<h3>Create new: {{substr($tableName, 0, -1)}}</h3>
 
 			@if(isset($error))
 				<div class="alert alert-danger">
@@ -24,19 +24,41 @@
 
 			@foreach($fields as $field)
 
-			    @if($field)
+				@if($field == 'user_id')
+
+				@elseif($field == 'calories' and $tableName == 'pizzas')
+
+				@elseif(isset($dropdown) and substr($field, -3) == '_id')
+					<div class="form-group">
+						{!! Form::label($field, 'Choose ' . ucfirst(substr($field, 0, -4) . ':')) !!}
+						{{Form::select($field ,$dropdown[$field], '', ['class' => 'form-control'])}}<br/>
+					</div>
+
+				@elseif(isset($checkbox[$field]))
+					{!! Form::label($field, 'Pick ' . ucfirst($field . ':')) !!}<br/>
+					@foreach($checkbox[$field] as $key => $checkboxItem)
+						{{Form::checkbox($field.'[]', $key)}}
+						{{Form::label($checkboxItem, $checkboxItem)}}<br/>
+					@endforeach<br/>
+
+				@elseif($field == 'password')
+					<div class="form-group">
+						{!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}
+						{!! Form::password($field, ['class' => 'form-control'])!!}<br/>
+					</div>
+
+				@elseif($field)
 			    	<div class="form-group">
 				        {!! Form::label($field, 'Enter ' . ucfirst($field . ':')) !!}
 				        {!! Form::text($field, '', ['class' => 'form-control'])!!}<br/>
 			        </div>
-
 			    @endif
 
 			@endforeach
 
 
 			{!! Form::submit('Create' , ['class' => 'btn btn-success']) !!}
-			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">Back to list</a>
+			<a class="btn btn-primary" href="{{ route('app.' . $tableName . '.index') }}">{{ucfirst($tableName)}} list</a>
 
 			{!! Form::close() !!}
 		</div>
