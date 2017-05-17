@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\DTRoles;
 use App\models\DTUsers;
 use Illuminate\Routing\Controller;
 
@@ -53,6 +54,11 @@ class DTUsersController extends Controller {
         $configuration['fields'] = $dataFromModel->getFillable();
         $configuration['tableName'] = $dataFromModel->getTableName();
         $configuration['list'] = DTUsers::get()->toArray();
+        $configuration['checkbox']['roles']=DTRoles::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][4]);
+        array_push($configuration['fields'], "roles");
+        array_push($configuration['fields'], "password");
 
         return view('admin.createform', $configuration);
 	}

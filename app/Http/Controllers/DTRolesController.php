@@ -2,6 +2,7 @@
 
 use App\models\DTRoles;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
 
 class DTRolesController extends Controller {
 
