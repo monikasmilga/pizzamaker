@@ -45,7 +45,19 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function create()
 	{
+        $dataFromModel = new DTPizzas();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 
+        $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
+        $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        unset($configuration['fields'][6]);
+        array_push($configuration['fields'], "ingredients");
+        array_push($configuration['fields'], "comment");
+
+        return view('front-end.createform', $configuration);
 	}
 
     public function adminCreate()
