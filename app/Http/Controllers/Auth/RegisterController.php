@@ -65,13 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return DTUsers::create([
+        $record = DTUsers::create([
             'id' => Uuid::uuid4(),
-            'phone' => '861622255',
             'phone' => $data['phone'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $record -> connection()->sync(['member', 'user']);
+
+        return $record;
     }
 }
