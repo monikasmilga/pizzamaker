@@ -15,6 +15,13 @@ class DTUsers extends Authenticatable
     use Notifiable;
 
     /**
+     * Incrementing is set to false
+     *
+     * @var bool
+     */
+
+    public $incrementing = false;
+    /**
      * @var table name
      */
     protected $table = 'dt_users';
@@ -28,7 +35,7 @@ class DTUsers extends Authenticatable
 
     public function connection()
     {
-        return $this->belongsToMany(DTRoles::class, 'dt_users_roles_connections', 'roles_id', 'users_id');
+        return $this->belongsToMany(DTRoles::class, 'dt_users_roles_connections', 'users_id', 'roles_id');
     }
 
     public function usersConnections()
