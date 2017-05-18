@@ -37,8 +37,9 @@
 				@elseif(isset($checkbox[$field]))
 					{!! Form::label($field, 'Pick ' . ucfirst($field . ':')) !!}<br/>
 					@foreach($checkbox[$field] as $key => $checkboxItem)
-						{{Form::checkbox($field.'[]', $key)}}
-						{{Form::label($checkboxItem, $checkboxItem)}}<br/>
+							{{Form::checkbox($field.'[]', $key)}}
+						<span @if($key == $cache) style="font-weight:700" @endif>
+							{{Form::label($checkboxItem, $checkboxItem)}}</span><br/>
 					@endforeach<br/>
 
 				@elseif($field == 'password')

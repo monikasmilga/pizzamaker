@@ -25,6 +25,7 @@
                 @foreach($list as $key => $record)
                     <tr id="{{$record['id']}}">
                         @foreach($record as $key => $value)
+
                             <td>{{$value}}</td>
 
                         @endforeach

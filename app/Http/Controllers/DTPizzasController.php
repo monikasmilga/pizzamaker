@@ -68,6 +68,8 @@ class DTPizzasController extends BaseAPIController {
         array_push($configuration['fields'], "ingredients");
         array_push($configuration['fields'], "comment");
 
+        $configuration['cache'] = cache()->get('super-ingredient');
+
         return view('front-end.createform', $configuration);
     }
 
@@ -84,6 +86,8 @@ class DTPizzasController extends BaseAPIController {
         unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
         array_push($configuration['fields'], "comment");
+
+        $configuration['cache'] = cache()->get('super-ingredient');
 
         return view('admin.createform', $configuration);
 	}
@@ -105,6 +109,8 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        $configuration['cache'] = cache()->get('super-ingredient');
 
         unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
@@ -165,6 +171,8 @@ class DTPizzasController extends BaseAPIController {
         $configuration['dropdown']['pads_id']=DTPads::all()->pluck('name', 'id')->toArray();
         $configuration['dropdown']['cheeses_id']=DTCheeses::all()->pluck('name', 'id')->toArray();
         $configuration['checkbox']['ingredients']=DTIngredients::all()->pluck('name', 'id')->toArray();
+
+        $configuration['cache'] = cache()->get('super-ingredient');
 
         unset($configuration['fields'][6]);
         array_push($configuration['fields'], "ingredients");
@@ -270,7 +278,6 @@ class DTPizzasController extends BaseAPIController {
         array_push($configuration['fields'], "comment");
 
         return view('front-end.editform', $configuration);
-
     }
 
 	public function adminEdit($id) 

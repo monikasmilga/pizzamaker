@@ -89,6 +89,33 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/CodeAcademyDreamTeam/pizzamaker">GitHub (CodeAcademyDreamTeam)</a>
                 </div>
+
+                <div>
+                    <table>
+                        <tr>
+                            <th>Create</th>
+                            <th>Edit</th>
+                            <th>List</th>
+                        </tr>
+                        <tr>
+                            <td class="links"><a href="https://laravel.com/docs">Pizza (as user)</a></td>
+                            <td class="links"><a href="https://laravel.com/docs">Pizza (as user)</a></td>
+                            <td class="links"><a href="http://pizzamaker.dev/pizzas">Pizzas (as user)</a></td>
+                        </tr>
+                        <tr>
+                            <td class="links"><a href="http://pizzamaker.dev/admin/pizzas/create">Pizza</a></td>
+                            <td class="links"><a href="http://pizzamaker.dev/admin/pizzas/edit">Pizza</a></td>
+                            <td class="links"><a href="http://pizzamaker.dev/admin/pizzas">Pizzas</a></td>
+                        </tr>
+                        <tr>
+                            <td class="links"><a href="https://laravel.com/docs">Pizzas</a></td>
+                            <td class="links"><a href="https://laravel.com/docs">Documentation</a></td>
+                            <td class="links"><a href="https://laravel.com/docs">Documentation</a></td>
+                        </tr>
+
+                    </table>
+                </div>
+
             </div>
         </div>
     </body>

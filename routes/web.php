@@ -98,7 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check-role-super-admin'], fu
 
         Route::get('/', ['as' => 'app.pizzas.index','uses' => 'DTPizzasController@adminIndex']);
 
-        Route::get('/create', ['middleware' => ['auth', 'check-role-member'], 'as' => 'app.pizzas.create','uses' => 'DTPizzasController@adminCreate']);
+        Route::get('/create', ['as' => 'app.pizzas.create','uses' => 'DTPizzasController@adminCreate']);
         Route::post('/create', ['as' => 'app.pizzas.store', 'uses' => 'DTPizzasController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
@@ -151,7 +151,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check-role-super-admin'], fu
 });
 
 
-Route::group(['prefix' => 'pizzas', 'middleware' => ['auth', 'check-role-member', 'check-role-super-admin']], function () {
+Route::group(['prefix' => 'pizzas', 'middleware' => ['auth', 'check-role-member']], function () {
 
     Route::get('/', ['as' => 'front-end.pizzas.index', 'uses' => 'DTPizzasController@index']);
 
