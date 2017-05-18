@@ -8,7 +8,9 @@
 
 namespace App\Console\Commands;
 
+use App\models\DTUsers;
 use Illuminate\Console\Command;
+use Ramsey\Uuid\Uuid;
 
 class CreateAdministrator extends Command
 {
@@ -18,12 +20,22 @@ class CreateAdministrator extends Command
 
     public function handle()
     {
-        $this->comment("Creating admin user");
-        $email = $this->ask('Please provide email');
+        if(DTUsers::get()->toArray() == [])
+        {
+            $this->comment("Creating admin user");
 
+            $record = DTUsers::create([
+                'id' => Uuid::uuid4(),
+                'name' => $name = $this->ask('Please provide name'),
+                'email' => $email = $this->ask('Please provide email'),
+                'phone' => $phone = $this->ask('Please provide phone'),
+                'password' => bcrypt($password = $this->secret('Please provide password')),
+            ]);
 
-//
-//        $this->info("info");
-//        $this->error("error");
+            $record -> connection()-> sync('super-admin');
+
+            $this->comment("Great success!");
+
+        }
     }
 }
