@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckIfAdmin;
 use App\Http\Middleware\CustomCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -58,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'check-role-member' => CustomCheck::class,
+        'check-role-super-admin' => CheckIfAdmin::class,
     ];
 }
