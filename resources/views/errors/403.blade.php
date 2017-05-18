@@ -8,7 +8,7 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-                        <h1>No info without register</h1>
+                        <h1>No permission!</h1>
                     </div>
                 </div>
             </div>

@@ -133,7 +133,7 @@ class DTPizzasController extends BaseAPIController {
             return view('front-end.createform', $configuration);
         }
 
-        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $pad_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
         $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
 
         $ingredients_calories = 0;
@@ -143,7 +143,7 @@ class DTPizzasController extends BaseAPIController {
             $ingredients_calories+= array_sum($ingredient_calories);
         }
 
-        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
+        $data['calories'] = $pad_calories + $cheeses_calories + $ingredients_calories;
 
         $record = DTPizzas::create($data);
 
@@ -193,7 +193,7 @@ class DTPizzasController extends BaseAPIController {
             return view('admin.createform', $configuration);
         }
 
-        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $pad_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
         $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
 
         $ingredients_calories = 0;
@@ -203,7 +203,7 @@ class DTPizzasController extends BaseAPIController {
             $ingredients_calories+= array_sum($ingredient_calories);
         }
 
-        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
+        $data['calories'] = $pad_calories + $cheeses_calories + $ingredients_calories;
 
         $record = DTPizzas::create($data);
 
@@ -342,7 +342,7 @@ class DTPizzasController extends BaseAPIController {
             return view('front-end.createform', $configuration);
         }
 
-        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $pad_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
         $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
 
         $ingredients_calories = 0;
@@ -352,7 +352,7 @@ class DTPizzasController extends BaseAPIController {
             $ingredients_calories+= array_sum($ingredient_calories);
         }
 
-        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
+        $data['calories'] = $pad_calories + $cheeses_calories + $ingredients_calories;
 
         $record = DTPizzas::find($id);
         $data = request()->all();
@@ -404,7 +404,7 @@ class DTPizzasController extends BaseAPIController {
             return view('admin.createform', $configuration);
         }
 
-        $ground_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
+        $pad_calories = array_sum(DB::table('dt_pads')->where('id', '=', $data['pads_id'])->select('calories')->get()->pluck('calories')->toArray());
         $cheeses_calories = array_sum(DB::table('dt_cheeses')->where('id', '=', $data['cheeses_id'])->select('calories')->get()->pluck('calories')->toArray());
 
         $ingredients_calories = 0;
@@ -414,7 +414,7 @@ class DTPizzasController extends BaseAPIController {
             $ingredients_calories+= array_sum($ingredient_calories);
         }
 
-        $data['calories'] = $ground_calories + $cheeses_calories + $ingredients_calories;
+        $data['calories'] = $pad_calories + $cheeses_calories + $ingredients_calories;
 
         $record = DTPizzas::find($id);
         $data = request()->all();
@@ -436,15 +436,15 @@ class DTPizzasController extends BaseAPIController {
 	 */
 	public function destroy($id)
     {
-        if(DTPizzas::destroy($id)) {
-            return '{"success":true}';
+        if (DTPizzas::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
     }
 
     public function adminDestroy($id)
     {
-        if(DTPizzas::destroy($id)) {
-            return '{"success":true}';
+        if (DTPizzas::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
 	}
 

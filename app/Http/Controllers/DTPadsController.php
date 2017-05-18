@@ -162,12 +162,9 @@ class DTPadsController extends Controller {
 
     public function adminDestroy($id)
     {
-
-        if(DTPads::destroy($id)) {
-            return '{"success":true}';
+        if (DTPads::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
-
-
 	}
 
 }

@@ -18,7 +18,9 @@ Route::get('/', function () {
 /**
  * Routes for admin role only
  */
-Route::group(['prefix' => 'admin'], function () {
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'check-role-super-admin'], function () {
 
     Route::group(['prefix' => 'cheeses'], function () {
 
@@ -149,19 +151,19 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::group(['prefix' => 'pizzas'], function () {
+Route::group(['prefix' => 'pizzas', 'middleware' => ['auth', 'check-role-member', 'check-role-super-admin']], function () {
 
-    Route::get('/', ['middleware' => ['auth', 'check-role-member'], 'as' => 'front-end.pizzas.index', 'uses' => 'DTPizzasController@index']);
+    Route::get('/', ['as' => 'front-end.pizzas.index', 'uses' => 'DTPizzasController@index']);
 
-    Route::get('/create', ['middleware' => ['auth', 'check-role-member'], 'as' => 'front-end.pizzas.create', 'uses' => 'DTPizzasController@create']);
+    Route::get('/create', ['as' => 'front-end.pizzas.create', 'uses' => 'DTPizzasController@create']);
     Route::post('/create', ['as' => 'front-end.pizzas.store', 'uses' => 'DTPizzasController@store']);
 
     Route::group(['prefix' => '{id}'], function () {
 
-        Route::get('/edit', ['middleware' => ['auth', 'check-role-member'], 'as' => 'front-end.pizzas.edit', 'uses' => 'DTPizzasController@edit']);
+        Route::get('/edit', ['as' => 'front-end.pizzas.edit', 'uses' => 'DTPizzasController@edit']);
         Route::post('/edit', ['as' => 'front-end.pizzas.update', 'uses' => 'DTPizzasController@update']);
 
-        Route::get('/', ['middleware' => ['auth', 'check-role-member'], 'as' => 'front-end.pizzas.show', 'uses' => 'DTPizzasController@show']);
+        Route::get('/', ['as' => 'front-end.pizzas.show', 'uses' => 'DTPizzasController@show']);
         Route::delete('/', ['as' => 'front-end.pizzas.delete', 'uses' => 'DTPizzasController@destroy']);
 
     });

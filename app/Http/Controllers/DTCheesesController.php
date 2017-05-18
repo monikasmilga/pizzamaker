@@ -162,12 +162,9 @@ class DTCheesesController extends Controller {
 
     public function adminDestroy($id)
     {
-
-        if(DTCheeses::destroy($id)) {
-            return '{"success":true}';
+        if (DTCheeses::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
-
-
     }
 
 }
