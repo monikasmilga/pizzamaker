@@ -29,7 +29,7 @@ class FindIngredientId extends Command
      */
     public function handle()
     {
-       Cache::put('super-ingredient', DTIngredients::all()->random(1)->first()->id, 120);
+       cache()->put('super-ingredient', DTIngredients::all()->random(1)->first()->id, 120);
 
     }
 }
