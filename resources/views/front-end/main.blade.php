@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     @include('front-end.includes.css')
 </head>
-<body style="background-color: #196c4b">
+<body style="background-color: palegoldenrod">
 
 @yield('content')
 
