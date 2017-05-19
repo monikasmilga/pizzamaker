@@ -162,12 +162,9 @@ class DTPermissionsController extends Controller {
 
     public function adminDestroy($id)
     {
-
-        if(DTPermissions::destroy($id)) {
-            return '{"success":true}';
+        if (DTPermissions::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
-
-
 	}
 
 }

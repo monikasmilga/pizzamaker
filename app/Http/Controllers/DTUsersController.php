@@ -191,11 +191,8 @@ class DTUsersController extends Controller {
 
     public function adminDestroy($id)
     {
-
-        if(DTUsers::destroy($id)) {
-            return '{"success":true}';
+        if (DTUsers::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
-
-
 	}
 }

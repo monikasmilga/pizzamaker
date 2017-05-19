@@ -6,7 +6,7 @@ use App\models\DTRoles;
 use App\models\DTUsers;
 use Closure;
 
-class CustomCheck
+class CheckIfMember
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,13 @@ class CustomCheck
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if(in_array("member", auth()->user()->rolesConnections->pluck('roles_id')->toArray()))
+        $roles = auth()->user()->rolesConnections->pluck('roles_id')->toArray();
+
+        if(in_array("member", $roles) or in_array("check-role-member", $roles))
+
             return $next($request);
 
-        return abort(403, "no pizzas!");
+        return abort(403, "no permission!");
     }
-
-
 }
+

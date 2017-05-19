@@ -38,6 +38,7 @@
 					{!! Form::label($field, 'Pick ' . ucfirst($field . ':')) !!}<br/>
 					@foreach($checkbox[$field] as $key => $checkboxItem)
 						{{Form::checkbox($field.'[]', $key)}}
+						<span @if($key == $cache) style="font-weight:700" @endif>
 						{{Form::label($checkboxItem, $checkboxItem)}}<br/>
 					@endforeach<br/>
 
