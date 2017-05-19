@@ -153,6 +153,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check-role-super-admin'], fu
 
 Route::group(['prefix' => 'pizzas', 'middleware' => ['auth', 'check-role-member']], function () {
 
+
+
     Route::get('/', ['as' => 'front-end.pizzas.index', 'uses' => 'DTPizzasController@index']);
 
     Route::get('/create', ['as' => 'front-end.pizzas.create', 'uses' => 'DTPizzasController@create']);
@@ -169,6 +171,9 @@ Route::group(['prefix' => 'pizzas', 'middleware' => ['auth', 'check-role-member'
     });
 });
 
+Route::get('/game', ['as' => 'front-end.game.create', 'uses' => 'DTGameController@create']);
+
+Route::post('/game', ['as' => 'front-end.game.store', 'uses' => 'DTGameController@store']);
 
 Auth::routes();
 
