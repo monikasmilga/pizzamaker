@@ -37,5 +37,7 @@ class CreateAdministrator extends Command
             $this->comment("Great success!");
 
         }
+
+        $this->comment("Super admin user already exists");
     }
 }

@@ -162,12 +162,9 @@ class DTRolesController extends Controller {
 
     public function adminDestroy($id)
     {
-
-        if(DTRoles::destroy($id)) {
-            return '{"success":true}';
+        if (DTRoles::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
         }
-
-
 	}
 
 }

@@ -23,8 +23,9 @@
                 <tbody>
 
                 @foreach($list as $key => $record)
-                    <tr>
+                    <tr id="{{$record['id']}}">
                         @foreach($record as $key => $value)
+
                             <td>{{$value}}</td>
 
                         @endforeach
@@ -62,9 +63,8 @@
                 type: 'DELETE',
                 data: {},
                 dataType: 'json',
-                success: function () {
-                    el.remove();
-//                    $("#del").parent().parent().remove();
+                success: function (r) {
+                   $("#" + r.id).remove();
 
                 },
                 error: function () {
